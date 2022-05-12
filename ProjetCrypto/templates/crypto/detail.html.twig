@@ -1,0 +1,15 @@
+{%  extends 'base.html.twig' %}
+{% block body %}
+<div class="example-wrapper">
+
+    <div class="example-wrapper">
+
+        {{ crypto.nom }}<br>
+        {{ crypto.symbole }}<br>
+        {{ crypto.prix }} €<br>
+        {{ crypto.marketcap }}<br>
+        {{ crypto.categorie }}<br>
+        {{ crypto.date_creation|date("m/d/Y") }}<br>
+    </div>
+</div>
+{% endblock %}
