@@ -14,8 +14,10 @@ class CryptoController extends AbstractController
      */
     public function index(): Response
     {
+        $repo = $this->getDoctrine()->getRepository(Crypto::class);
+        $crypto = $repo->findAll();
         return $this->render('crypto/index.html.twig', [
-            'controller_name' => 'CryptoController',
+            'controller_name' => 'CryptoController', $crypto
         ]);
     }
 

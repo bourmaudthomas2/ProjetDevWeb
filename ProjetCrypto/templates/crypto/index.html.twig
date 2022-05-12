@@ -10,11 +10,9 @@
 
 <div class="example-wrapper">
     <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/bourm/Documents/ProjetDevWeb/ProjetCrypto/src/Controller/CryptoController.php'|file_link(0) }}">src/Controller/CryptoController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/bourm/Documents/ProjetDevWeb/ProjetCrypto/templates/crypto/index.html.twig'|file_link(0) }}">templates/crypto/index.html.twig</a></code></li>
-    </ul>
+    {% for crypto in cryptos %}
+        <li>{{ crypto.nom }}</li>
+        <li>{{ crypto.symbole }}</li>
+    {% endfor %}
 </div>
 {% endblock %}
