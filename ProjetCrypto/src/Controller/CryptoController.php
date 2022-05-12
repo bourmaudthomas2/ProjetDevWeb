@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\DataFixtures\CryptoFixtures;
+use App\Entity\Crypto;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,8 +15,10 @@ class CryptoController extends AbstractController
      */
     public function index(): Response
     {
+        $repo = $this->getDoctrine()->getRepository(Crypto::class);
+        $cryptos = $repo->findAll();
         return $this->render('crypto/index.html.twig', [
-            'controller_name' => 'CryptoController',
+            'cryptos' => $cryptos
         ]);
     }
 
