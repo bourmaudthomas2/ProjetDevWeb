@@ -58,6 +58,7 @@ class CryptoFixtures extends Fixture
             $crypto->setCategorie("");
             $crypto->setFollowers(0);
             $crypto->setVoteUp(0);
+            $crypto->setLogo($j["image"]);
 
             $date = new DateTime(substr($j["atl_date"],0,10));
 

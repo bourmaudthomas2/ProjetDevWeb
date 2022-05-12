@@ -133,6 +133,8 @@
       <path value="$PROJECT_DIR$/ProjetCrypto/vendor/composer" />
       <path value="$PROJECT_DIR$/ProjetCrypto/vendor/doctrine/doctrine-cache-bundle" />
       <path value="$PROJECT_DIR$/ProjetCrypto/vendor/doctrine/reflection" />
+      <path value="$PROJECT_DIR$/ProjetCrypto/vendor/laminas/laminas-eventmanager" />
+      <path value="$PROJECT_DIR$/ProjetCrypto/vendor/laminas/laminas-zendframework-bridge" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.0">
