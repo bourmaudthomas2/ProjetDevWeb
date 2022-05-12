@@ -3,13 +3,48 @@
 <div class="example-wrapper">
 
     <div class="example-wrapper">
+        <img src="{{ crypto.logo }}" width="50px">
+        <span style="padding-left:25px; font-size: 2.5em; font-weight: bold"> {{ crypto.nom }}
+            <span style="font-size: 0.75em">({{ crypto.symbole }})</span>
+        </span>
+        <span style="padding-left: 10px ; font-size: 1.2em"></span>
+        <br>
 
-        {{ crypto.nom }}<br>
-        {{ crypto.symbole }}<br>
-        {{ crypto.prix }} €<br>
-        {{ crypto.marketcap }}<br>
-        {{ crypto.categorie }}<br>
-        {{ crypto.date_creation|date("m/d/Y") }}<br>
+    </div>
+    <div class="example-wrapper" style="padding:25px 0px 25px 25px">
+        <span style="font-size: 1.9em;"> <b>{{ crypto.prix }} €</b></span>
+</div>
+    <div class="example-wrapper" style="padding:25px 0px 25px 25px">
+        <span style="font-size: 1em;">{{ crypto.description }}</span>
+    </div>
+    <div class="example-wrapper">
+        <table class="table">
+            <tr>
+                <td style="text-align: left">Capitalisation de marché :</td>
+                <td> </td>
+                <td style="text-align: right">{{ crypto.marketcap }}</td>
+            </tr>
+            <tr>
+                <td style="text-align: left">Catégorie de la crypto-monnaie :</td>
+                <td> </td>
+                <td style="text-align: right">{{ crypto.categorie }}</td>
+            </tr>
+            <tr>
+                <td style="text-align: left">Date de création :</td>
+                <td> </td>
+                <td style="text-align: right">{{ crypto.date_creation|date("m/d/Y") }}</td>
+            </tr>
+            <tr>
+                <td style="text-align: left">Favoris :</td>
+                <td> </td>
+                <td style="text-align: right">{{ crypto.vote_up }}</td>
+            </tr>
+            <tr>
+                <td style="text-align: left">Followers page twitter officiel :</td>
+                <td></td>
+                <td style="text-align: right">{{ crypto.followers }}</td>
+            </tr>
+        </table>
     </div>
 </div>
 {% endblock %}

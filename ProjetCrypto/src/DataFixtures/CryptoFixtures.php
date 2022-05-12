@@ -15,8 +15,6 @@ class CryptoFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
-
-
         $ch = curl_init();
         try {
             curl_setopt($ch, CURLOPT_URL, "https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=15000&page=1&sparkline=false");
@@ -51,6 +49,7 @@ class CryptoFixtures extends Fixture
         foreach ($json as $j){
             $crypto = new Crypto();
             $crypto->setNom($j["name"]);
+            $crypto->setIdAPI($j["id"]);
             $crypto->setSymbole($j["symbol"]);
             $crypto->setPrix($j["current_price"]);
             $crypto->setDescription("");

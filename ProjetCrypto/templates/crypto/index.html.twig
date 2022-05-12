@@ -1,9 +1,7 @@
 {%  extends 'base.html.twig' %}
 {% block body %}
 <div class="example-wrapper">
-
-
-        <h1> Cours des cryptomonnaies</h1>
+        <h1 style="padding-left:25px"> Cours des cryptomonnaies</h1>
         <table class="table">
             <thead>
             <tr>
@@ -24,7 +22,7 @@
                 <tr>
                     <td>{{ nb }}</td>
                     <td><img src="{{ cryp.logo }}" width="30px"></td>
-                    <td>{{ cryp.nom }}</td>
+                    <td ><a href="../crypto/detail/{{cryp.id}}" style=" color: #000000;text-decoration: none;"><b>{{ cryp.nom }}</b></a></td>
                     <td>{{ cryp.symbole }}</td>
                     <td>{{ cryp.prix }} €</td>
                     <td>{{ cryp.marketcap }}</td>
@@ -35,6 +33,11 @@
 
             </tbody>
         </table>
+
+
+
     </div>
+    &nbsp
+    &nbsp
 </div>
 {% endblock %}
