@@ -30,7 +30,7 @@
             var element = document.body;
             element.classList.toggle("dark-mode");
             var elements = document.getElementsByClassName('navbar navbar-default'); // get all elements.
-            for(var i = 0; i < elements. length; i++){
+            for(var i = 0; i < elements.length; i++){
                 elements[i].classList.toggle("dark-modebar");
             }
         }
@@ -46,6 +46,11 @@
 
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
+                {%  if app.user %}
+                <div>
+                    Bienvenue {{ app.user.username }}
+                </div>
+                {% endif %}
                 <li>
                 <div>
                     <a onclick="myFunction()" class="btn btn-default navbar-btn" >Mode Sombre</a>
@@ -56,8 +61,12 @@
 
 
                     <div>
-                        <a href="#" class="btn btn-default navbar-btn">Connexion</a>
-                    </div>
+                        {%  if app.user %}
+                        <a href="/logout" class="btn btn-default navbar-btn">Déconnexion</a>
+                        {% else %}
+                        <a href="/login" class="btn btn-default navbar-btn">Connexion</a>
+                        {% endif %}
+                   </div>
                 </li>
             </ul>
         </div>
