@@ -75,6 +75,11 @@ class Crypto
      */
     private $commentaires;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $logo;
+
 
 
     public function __construct()
@@ -250,6 +255,18 @@ class Crypto
                 $commentaire->setCrypto(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getLogo(): ?string
+    {
+        return $this->logo;
+    }
+
+    public function setLogo(?string $logo): self
+    {
+        $this->logo = $logo;
 
         return $this;
     }

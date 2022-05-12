@@ -8,6 +8,7 @@
             <thead>
             <tr>
                 <th scope="col">#</th>
+                <th scope="col"></th>
                 <th scope="col">Nom</th>
                 <th scope="col">Symbole</th>
                 <th scope="col">Prix</th>
@@ -22,6 +23,7 @@
                 {% set nb = nb + 1 %}
                 <tr>
                     <td>{{ nb }}</td>
+                    <td><img src="{{ cryp.logo }}" width="30px"></td>
                     <td>{{ cryp.nom }}</td>
                     <td>{{ cryp.symbole }}</td>
                     <td>{{ cryp.prix }} €</td>
