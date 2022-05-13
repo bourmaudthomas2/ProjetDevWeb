@@ -1,19 +1,43 @@
 {%  extends 'base.html.twig' %}
 {% block body %}
 <div class="example-wrapper">
-    <h1>Hello User! ✅</h1>
+        <h1 style="padding-left:25px"> Cours des cryptomonnaies</h1>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col"></th>
+                <th scope="col">Nom</th>
+                <th scope="col">Symbole</th>
+                <th scope="col">Prix</th>
+                <th scope="col">Marketcap</th>
+                <th scope="col">Categorie</th>
+                <th scope="col">Date de Création</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% set nb = 0 %}
+            {% for cryp in cryptos %}
+                {% set nb = nb + 1 %}
+                <tr>
+                    <td>{{ nb }}</td>
+                    <td><img src="{{ cryp.logo }}" width="30px"></td>
+                    <td ><a href="../crypto/detail/{{cryp.id}}" style=" color: #000000;text-decoration: none;"><b>{{ cryp.nom }}</b></a></td>
+                    <td>{{ cryp.symbole }}</td>
+                    <td>{{ cryp.prix }} €</td>
+                    <td>{{ cryp.marketcap }}</td>
+                    <td>{{ cryp.categorie }}</td>
+                    <td>{{ cryp.dateCreation|date("m/d/Y") }}</td>
+                </tr>
+            {% endfor %}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/bourm/Documents/ProjetDevWeb/ProjetCrypto/src/Controller/CryptoController.php'|file_link(0) }}">src/Controller/CryptoController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/bourm/Documents/ProjetDevWeb/ProjetCrypto/templates/crypto/index.html.twig'|file_link(0) }}">templates/crypto/index.html.twig</a></code></li>
-    </ul>
-    <div class="example-wrapper">
-        <h1>Hello User! ✅</h1>
-        {% for cryp in cryptos %}
-            <li>{{ cryp.nom }}</li>
-            <li>{{ cryp.symbole }}</li>
-        {% endfor %}
+            </tbody>
+        </table>
+
+
+
     </div>
+    &nbsp
+    &nbsp
 </div>
 {% endblock %}

@@ -1,0 +1,97 @@
+{%  extends 'base.html.twig' %}
+{% block body %}
+<div class="example-wrapper">
+
+    <div class="example-wrapper">
+        <img src="{{ crypto.logo }}" width="50px">
+        <span style="padding-left:25px; font-size: 2.5em; font-weight: bold"> {{ crypto.nom }}
+            <span style="font-size: 0.75em">({{ crypto.symbole }})</span>
+        </span>
+        <span style="padding-left: 10px ; font-size: 1.2em"></span>
+        <br>
+
+    </div>
+    <div class="example-wrapper" style="padding:25px 0px 25px 25px">
+        <span style="font-size: 1.9em;"> <b>{{ crypto.prix }} €</b></span>
+</div>
+    <div class="example-wrapper" style="padding:25px 0px 25px 25px">
+        <span style="font-size: 1em;">{{ crypto.description }}</span>
+    </div>
+    <div class="example-wrapper">
+        <table class="table">
+            <tr>
+                <td style="text-align: left">Capitalisation de marché :</td>
+                <td> </td>
+                <td style="text-align: right">{{ crypto.marketcap }}</td>
+            </tr>
+            <tr>
+                <td style="text-align: left">Catégorie de la crypto-monnaie :</td>
+                <td> </td>
+                <td style="text-align: right">{{ crypto.categorie }}</td>
+            </tr>
+            <tr>
+                <td style="text-align: left">Date de création :</td>
+                <td> </td>
+                <td style="text-align: right">{{ crypto.date_creation|date("m/d/Y") }}</td>
+            </tr>
+            <tr>
+                <td style="text-align: left">Favoris :</td>
+                <td> </td>
+                <td style="text-align: right">{{ crypto.vote_up }}</td>
+            </tr>
+            <tr>
+                <td style="text-align: left">Followers page twitter officiel :</td>
+                <td></td>
+                <td style="text-align: right">{{ crypto.followers }}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+    <div id="main" style="width: 600px;height:400px;"></div>
+
+
+    <script type="text/javascript">
+        // Initialize the echarts instance based on the prepared dom
+        var myChart = echarts.init(document.getElementById('main'));
+
+        // Specify the configuration items and data for the chart
+        var option = {
+            title : {
+              text:"Cours de la cryptomonnaie : {{ crypto.nom }} sur les 24 dernières heures"
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            xAxis: {
+                type: 'category',
+                axisLabel: {
+                    rotate:45,
+                },
+                data: ['{{crypto.graph.x.0}}','{{crypto.graph.x.1}}','{{crypto.graph.x.2}}','{{crypto.graph.x.3}}','{{crypto.graph.x.4}}','{{crypto.graph.x.5}}','{{crypto.graph.x.6}}',
+                '{{crypto.graph.x.7}}','{{crypto.graph.x.8}}','{{crypto.graph.x.9}}','{{crypto.graph.x.10}}','{{crypto.graph.x.11}}','{{crypto.graph.x.12}}','{{crypto.graph.x.13}}',
+                    '{{crypto.graph.x.14}}','{{crypto.graph.x.15}}','{{crypto.graph.x.16}}','{{crypto.graph.x.17}}','{{crypto.graph.x.18}}','{{crypto.graph.x.19}}','{{crypto.graph.x.20}}'
+                    ,'{{crypto.graph.x.21}}','{{crypto.graph.x.22}}','{{crypto.graph.x.23}}','{{crypto.graph.x.24}}'],
+            },
+            yAxis: {
+                type: 'value',
+                min:{{  crypto.graph.min}},
+                max:{{  crypto.graph.max}},
+            },
+            legend: {
+                data: ['Cours de la crypto']
+            },
+            series: [
+                {
+                    data: ['{{crypto.graph.data.0}}','{{crypto.graph.data.1}}','{{crypto.graph.data.2}}','{{crypto.graph.data.3}}','{{crypto.graph.data.4}}','{{crypto.graph.data.5}}','{{crypto.graph.data.6}}',
+                        '{{crypto.graph.data.7}}','{{crypto.graph.data.8}}','{{crypto.graph.data.9}}','{{crypto.graph.data.10}}','{{crypto.graph.data.11}}','{{crypto.graph.data.12}}','{{crypto.graph.data.13}}',
+                        '{{crypto.graph.data.14}}','{{crypto.graph.data.15}}','{{crypto.graph.data.16}}','{{crypto.graph.data.17}}','{{crypto.graph.data.18}}','{{crypto.graph.data.19}}','{{crypto.graph.data.20}}'
+                        ,'{{crypto.graph.data.21}}','{{crypto.graph.data.22}}','{{crypto.graph.data.23}}','{{crypto.graph.data.24}}'],
+                    type: 'line'
+                }
+            ]
+        };
+
+        // Display the chart using the configuration items and data just specified.
+        myChart.setOption(option);
+    </script>
+{% endblock %}

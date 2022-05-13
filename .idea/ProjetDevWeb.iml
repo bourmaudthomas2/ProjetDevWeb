@@ -133,6 +133,8 @@
       <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/composer" />
       <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/doctrine/doctrine-cache-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/doctrine/reflection" />
+      <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/laminas/laminas-eventmanager" />
+      <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/laminas/laminas-zendframework-bridge" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
