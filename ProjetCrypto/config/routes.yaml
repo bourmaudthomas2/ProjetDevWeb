@@ -1,5 +1,5 @@
 index:
-    path: /cryptos
+    path: /
     controller: App\Controller\CryptoController::index
 
 admin:
