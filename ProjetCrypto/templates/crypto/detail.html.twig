@@ -11,10 +11,10 @@
         <br>
 
     </div>
-    <div class="example-wrapper" style="padding:25px 0px 25px 25px">
+    <div class="example-wrapper" style="padding:35px 0px 5px 25px">
         <span style="font-size: 1.9em;"> <b>{{ crypto.prix }} €</b></span>
 </div>
-    <div class="example-wrapper" style="padding:25px 0px 25px 25px">
+    <div class="example-wrapper" style="padding:0px 0px 25px 25px">
         <span style="font-size: 1em;">{{ crypto.description }}</span>
     </div>
     <div class="example-wrapper">
@@ -47,9 +47,9 @@
         </table>
     </div>
 </div>
-    <div id="main" style="width: 600px;height:400px;"></div>
+    <div id="main" style="margin-left : 20%; width: 800px;height:450px; position: center"></div>
 
-
+<div>&nbsp</div>
     <script type="text/javascript">
         // Initialize the echarts instance based on the prepared dom
         var myChart = echarts.init(document.getElementById('main'));
@@ -65,7 +65,8 @@
             xAxis: {
                 type: 'category',
                 axisLabel: {
-                    rotate:45,
+                    rotate:55,
+                    fontSize:10,
                 },
                 data: ['{{crypto.graph.x.0}}','{{crypto.graph.x.1}}','{{crypto.graph.x.2}}','{{crypto.graph.x.3}}','{{crypto.graph.x.4}}','{{crypto.graph.x.5}}','{{crypto.graph.x.6}}',
                 '{{crypto.graph.x.7}}','{{crypto.graph.x.8}}','{{crypto.graph.x.9}}','{{crypto.graph.x.10}}','{{crypto.graph.x.11}}','{{crypto.graph.x.12}}','{{crypto.graph.x.13}}',
@@ -93,5 +94,6 @@
 
         // Display the chart using the configuration items and data just specified.
         myChart.setOption(option);
+
     </script>
 {% endblock %}

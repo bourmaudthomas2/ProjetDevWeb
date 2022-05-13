@@ -23,7 +23,24 @@ class CryptoController extends AbstractController
             'cryptos' => $cryptos
         ]);
     }
+    /**
+     * @Route("/cryptos/sort/{sort}&{order}", name="crypto.sort")
+     */
+    public function cryptosSort($sort,$order): Response
+    {
+        if($sort == "date"){
+            $sort = "dateCreation";
+        }
+        $repo = $this->getDoctrine()->getRepository(Crypto::class);
+        $cryptos = $repo->findBy(
+            array(),
+            array("$sort" => "$order")
+        );
 
+        return $this->render('crypto/index.html.twig', [
+            'cryptos' => $cryptos
+        ]);
+    }
     /**
      * @Route("/crypto/load", name="crypto.load")
      */
@@ -103,7 +120,7 @@ class CryptoController extends AbstractController
         $min = $prices[0][1];
         $max = 0;
         foreach ($prices as $p){
-            $date = date("Y/m/d H:i:s",substr($p[0],0,10));
+            $date = date("m/d H:i",substr($p[0],0,10));
             $crypto["graph"]["x"][]=$date;
             $crypto["graph"]["data"][]=$p[1];
 
@@ -115,14 +132,10 @@ class CryptoController extends AbstractController
             }
 
         }
+        $crypto["graph"]["max"]=round($max+($max*0.1),2);
+        $crypto["graph"]["min"]=round($min-($min*0.1),2);
 
-        $date = date("Y/m/d H:i:s",substr($json["prices"][0][0],0,10));
 
-        $crypto["graph"]["max"]=$max+($max*0.1);
-        $crypto["graph"]["min"]=$min-($min*0.1);
-
-        //$crypto["graph"]["data"]=[150, 230, 224, 218, 135, 147, 260];
-       // $crypto["graph"]["x"]=['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
         return $this->render('crypto/detail.html.twig', [
             'crypto' => $crypto
