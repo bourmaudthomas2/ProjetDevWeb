@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>{% block title %}Bebou Crypto{% endblock %}</title>
+    <title>{% block title %}Bébou Crypto{% endblock %}</title>
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
     {% block stylesheets %}{% endblock %}
 
     {% block javascripts %}{% endblock %}
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <style>
         .dark-mode {
@@ -41,7 +41,7 @@
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="../../cryptos">Bebou Crypto</a>
+            <a class="navbar-brand" href="../../cryptos">Bébou Crypto</a>
         </div>
 
         <div class="collapse navbar-collapse">
@@ -60,7 +60,15 @@
                 </div>
                 </li>
                 <li>
-
+                {% if app.user %}
+                {% if is_granted('ROLE_ADMIN') %}
+                    <div>
+                        <a href="/admin" class="btn btn-default navbar-btn">Admin</a>
+                    </div>
+                {% endif %}
+                {% endif %}
+                <li/>
+                <li>
 
                     <div>
                         {%  if app.user %}
