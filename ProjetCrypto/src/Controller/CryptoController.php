@@ -2,9 +2,7 @@
 
 namespace App\Controller;
 
-use App\DataFixtures\CryptoFixtures;
 use App\Entity\Crypto;
-use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -39,7 +37,9 @@ class CryptoController extends AbstractController
         $repo = $this->getDoctrine()->getRepository(Crypto::class);
         $cryptos = $repo->findBy(
             array(),
-            array("$sort" => "$order")
+            array("$sort" => "$order"),
+            50,
+            0
         );
 
         return $this->render('crypto/index.html.twig', [
@@ -138,7 +138,10 @@ class CryptoController extends AbstractController
         $prices = $json["prices"];
         $min = $prices[0][1];
         $max = 0;
+
+        $i=0;
         foreach ($prices as $p){
+            if($i == 24) break;
             $date = date("m/d H:i",substr($p[0],0,10));
             $crypto["graph"]["x"][]=$date;
             $crypto["graph"]["data"][]=$p[1];
@@ -218,5 +221,40 @@ class CryptoController extends AbstractController
         return $crypto;
     }
 
+    /**
+     * @Route("/cryptos/categorie/{cat}", name="crypto.categorie")
+     * @return Response
+     */
+    public function cryptosCategorie($cat = "Cryptocurrency"): Response
+    {
 
+
+
+        $repo = $this->getDoctrine()->getRepository(Crypto::class);
+        $sql = "select distinct categorie from Crypto where categorie != '';";
+
+        $conn = $this->getDoctrine()->getConnection();
+        $stmt = $conn->prepare($sql);
+
+        $stmt->execute();
+        $categories=  $stmt->fetchAll();
+
+foreach ($categories as $category=>$cat){
+    var_dump($category);
+}
+
+        $cryptos = $repo->findBy(
+            array("categorie"=>$cat),
+            array(),
+            50,
+            0
+        );
+
+//var_dump($cryptos[1]);
+
+
+        return $this->render('crypto/categorie.html.twig', [
+            'cryptos' => $cryptos, "cat"=>$cat, "categories"=>$categories
+        ]);
+    }
 }
