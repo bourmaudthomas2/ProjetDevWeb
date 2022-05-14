@@ -17,7 +17,12 @@ class CryptoController extends AbstractController
     public function index(): Response
     {
         $repo = $this->getDoctrine()->getRepository(Crypto::class);
-        $cryptos = $repo->findAll();
+        $cryptos = $repo->findBy(
+            array(),
+            array(),
+            50,
+            0
+        );
 
         return $this->render('crypto/index.html.twig', [
             'cryptos' => $cryptos
@@ -54,14 +59,29 @@ class CryptoController extends AbstractController
         ]);
     }
 
+
     /**
      * @Route("/crypto/detail/{id}", name="crypto.detail")
      * @return Response
      */
     public function cryptoOneById($id): Response
     {
+        $manager = $this->getDoctrine()->getManager();
+        $res = $this->getDoctrine()->getRepository(Crypto::class)->find($id);
+        $idAPI=$res->getIdAPI();
+
+        $update = $this->updateCryptoOneById($idAPI, $res);
+
+
+        $manager->persist($update);
+        $manager->flush();
+
+
 
         $res = $this->getDoctrine()->getRepository(Crypto::class)->find($id);
+
+
+
         $crypto['id']=$res->getId();
         $crypto['idAPI']=$res->getIdAPI();
         $crypto['nom']=$res->getNom();
@@ -81,7 +101,6 @@ class CryptoController extends AbstractController
         $crypto['date_creation']=$res->getDateCreation();
         $crypto['logo']=$res->getLogo();
 
-        $debut=time();
         $ch = curl_init();
         try {
             $url = "https://api.coingecko.com/api/v3/coins/".$crypto['idAPI']."/market_chart?vs_currency=eur&days=1&interval=hourly";
@@ -141,4 +160,63 @@ class CryptoController extends AbstractController
             'crypto' => $crypto
         ]);
     }
+
+    public function updateCryptoOneById($nameAPI, $crypto){
+
+        $ch = curl_init();
+        try {
+            curl_setopt($ch, CURLOPT_URL, "https://api.coingecko.com/api/v3/coins/$nameAPI");
+            curl_setopt($ch, CURLOPT_HEADER, false);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+            curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+            curl_setopt($ch, CURLOPT_MAXREDIRS, 1);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+
+            $response = curl_exec($ch);
+
+            if (curl_errno($ch)) {
+                echo curl_error($ch);
+                die();
+            }
+
+            $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+            if ($http_code == intval(200)) {
+                //echo $response;
+            } else {
+                echo "Ressource introuvable : " . $http_code;
+            }
+        } catch (\Throwable $th) {
+            throw $th;
+        } finally {
+            curl_close($ch);
+        }
+
+        $json = json_decode($response, 1);
+
+        if($json["market_data"]["current_price"]["eur"] == null){
+            $crypto->setPrix(0);
+        }else{
+            $crypto->setPrix($json["market_data"]["current_price"]["eur"]);
+        }
+        if($json["market_data"]["market_cap"]["eur"] == null){
+            $crypto->setMarketcap(0);
+        }else{
+            $crypto->setMarketcap($json["market_data"]["market_cap"]["eur"]);
+        }
+        if($json["community_data"]["twitter_followers"] == null){
+            $crypto->setFollowers(0);
+        }else{
+            $crypto->setFollowers($json["community_data"]["twitter_followers"]);
+        }
+        if($json["categories"][0] == null){
+            $crypto->setCategorie("");
+        }else{
+            $crypto->setCategorie($json["categories"][0]);
+        }
+        return $crypto;
+    }
+
+
 }

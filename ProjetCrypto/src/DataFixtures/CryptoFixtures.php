@@ -15,13 +15,14 @@ class CryptoFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
+        echo "fixtures\n";
         $ch = curl_init();
         try {
             curl_setopt($ch, CURLOPT_URL, "https://api.coingecko.com/api/v3/global");
             curl_setopt($ch, CURLOPT_HEADER, false);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
-            curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+            curl_setopt($ch, CURLOPT_TIMEOUT, 10);
             curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
             curl_setopt($ch, CURLOPT_MAXREDIRS, 1);
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
@@ -47,16 +48,18 @@ class CryptoFixtures extends Fixture
 
         $global = json_decode($response, 1);
         $global = $global["data"]["active_cryptocurrencies"];
+        echo "total = $global\n";
+        $nbPage = floor($global/250)+2;
 
-        for ($i=1; $i< $global%250; $i++){
-
+        for ($i=1; $i< $nbPage; $i++){
+            echo "page $i\n";
             $ch = curl_init();
             try {
                 curl_setopt($ch, CURLOPT_URL, "https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=250&page=$i&sparkline=false");
                 curl_setopt($ch, CURLOPT_HEADER, false);
                 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
-                curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+                curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+                curl_setopt($ch, CURLOPT_TIMEOUT, 10);
                 curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
                 curl_setopt($ch, CURLOPT_MAXREDIRS, 1);
                 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
@@ -82,15 +85,22 @@ class CryptoFixtures extends Fixture
 
             $json = json_decode($response, 1);
             foreach ($json as $j){
-                //faire des if $val == null
-                //mettre un boolean pour faire un persist ou non
+
                 $crypto = new Crypto();
                 $crypto->setNom($j["name"]);
                 $crypto->setIdAPI($j["id"]);
                 $crypto->setSymbole($j["symbol"]);
-                $crypto->setPrix($j["current_price"]);
+                if($j["current_price"] == null){
+                    $crypto->setPrix(0);
+                }else{
+                    $crypto->setPrix($j["current_price"]);
+                }
                 $crypto->setDescription("");
-                $crypto->setMarketcap($j["market_cap"]);
+                if($j["market_cap"] == null){
+                    $crypto->setMarketcap(0);
+                }else{
+                    $crypto->setMarketcap($j["market_cap"]);
+                }
                 $crypto->setCategorie("");
                 $crypto->setFollowers(0);
                 $crypto->setVoteUp(0);
@@ -102,10 +112,12 @@ class CryptoFixtures extends Fixture
 
                 $manager->persist($crypto);
             }
-            //sleep(2);
+
+            $manager->flush();
+            sleep(1);
         }
 
-        $manager->flush();
+
 
     }
 }
