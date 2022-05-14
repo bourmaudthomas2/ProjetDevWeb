@@ -7,7 +7,7 @@
 
             <select name="pets" id="pet-select" onchange="changeCategorie(value)">
                 {% for cat in categories %}
-                <option value="{{ cat.categorie }}">{{ cat.categorie }}</option>
+                <option value="{{ cat.value }}" {{cat.selected}}>{{ cat.nom }}</option>
                 {% endfor %}
             </select>
         </div>

@@ -227,21 +227,29 @@ class CryptoController extends AbstractController
      */
     public function cryptosCategorie($cat = "Cryptocurrency"): Response
     {
-
-
+        $cat = str_replace("_",".", $cat);
 
         $repo = $this->getDoctrine()->getRepository(Crypto::class);
-        $sql = "select distinct categorie from Crypto where categorie != '';";
-
         $conn = $this->getDoctrine()->getConnection();
+
+        $sql = "select distinct categorie from Crypto where categorie != '';";
         $stmt = $conn->prepare($sql);
 
         $stmt->execute();
         $categories=  $stmt->fetchAll();
 
-foreach ($categories as $category=>$cat){
-    var_dump($category);
-}
+
+        foreach ($categories as $category=>$cate){
+          //var_dump($cate["categorie"]);
+            $categories[$category]["value"]=str_replace(".","_", $cate["categorie"]);
+            $categories[$category]["nom"]=$cate["categorie"];
+            if($cate["categorie"]==$cat){
+                $categories[$category]["selected"]='selected="true"';
+            }else{
+                $categories[$category]["selected"]="";
+            }
+
+        }
 
         $cryptos = $repo->findBy(
             array("categorie"=>$cat),
