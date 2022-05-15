@@ -8,12 +8,10 @@
     {{ form_widget(form) }}
 
     <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
             <button type="submit" class="btn btn-default">Enregistrer</button>
             <a class="btn btn-secondary" href="{{ path('crypto.index') }}">
                 Liste des cryptomonnaies
             </a>
-        </div>
     </div>
     {{ form_end(form) }}
 {% endblock %}

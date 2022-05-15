@@ -5,7 +5,7 @@
         <div style="padding: 15px">
             <label for="pet-select">Catégorie :</label>
 
-            <select name="pets" id="pet-select" onchange="changeCategorie(value)">
+            <select class="form-select form-select-lg mb-3" name="pets" id="pet-select" onchange="changeCategorie(value)">
                 {% for cat in categories %}
                 <option value="{{ cat.value }}" {{cat.selected}}>{{ cat.nom }}</option>
                 {% endfor %}

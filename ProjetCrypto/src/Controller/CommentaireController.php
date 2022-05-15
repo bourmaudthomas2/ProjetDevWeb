@@ -37,7 +37,7 @@ class CommentaireController extends AbstractController
         $crypto = $this->getDoctrine()->getRepository(Crypto::class)->findOneBy(array('id'=>$id));
         $commentaire->setUser($user);
         $commentaire->setCrypto($crypto);
-
+        $commentaire->setDate(new \DateTime('now'));
         $form = $this->createForm(CommentaireType::class, $commentaire);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -52,6 +52,21 @@ class CommentaireController extends AbstractController
         return $this->render('commentaire/index.html.twig', [
             'form' => $form->createView(), ]);
 
+    }
+    /**
+     *
+     * @Route("commentaire/{id}/supprimer", name="commentaire.supprimer")
+     * @param Request $request
+     * @param Commentaire $com
+     * @param EntityManagerInterface $em
+     * @return Response
+     */
+    public function supprimer(Request $request, Commentaire $com, EntityManagerInterface $em) : Response
+    {
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($com);
+        $em->flush();
+        return $this->redirectToRoute('crypto.index');
     }
 
 }

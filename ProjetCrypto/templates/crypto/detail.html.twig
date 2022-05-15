@@ -47,6 +47,7 @@
         </table>
     </div>
 </div>
+
     <div id="main" style="margin-left : 20%; width: 800px;height:450px; position: center"></div>
 
 <div>&nbsp</div>
@@ -96,6 +97,36 @@
         myChart.setOption(option);
 
     </script>
+    <h4 style="text-align: center"> Commentaires </h4>
+    {% if app.user is null %}
+    <h6 style="text-align: center">Vous devez être connecté pour ajouter un commentaire</h6>
+    {% else %}
+        <a href="/add/comm/{{ crypto.id }}" class="btn btn-default navbar-btn">Ajouter un commentaire</a>
+    {% endif %}
 
-    <a href="/add/comm/{{ crypto.id }}">Ajouter un commentaire</a>
+
+<table class="table text-center">
+    <tr>
+        <th class="active text-center">Nom</th>
+        <th class="active text-center">Commentaire</th>
+
+
+                <th class="active text-center"></th>
+            <th class="active text-center"></th>
+    </tr>
+    {% for commentaire in commentaires %}
+        <tr>
+            <td>{{ commentaire.user.username }}</td>
+            <td>{{ commentaire.description}}</td>
+            {% if app.user %}
+            {% if is_granted("ROLE_ADMIN") or app.user.username is same as(commentaire.user.username) %}
+
+                    <td><a class = "btn btn-danger" href="{{ path('commentaire.supprimer', {id: commentaire.id}) }}">Supprimer</a></td>
+                    <td><a class = "btn btn-warning" href="#">Modifier</a></td>
+
+            {% endif %}
+            {% endif %}
+        </tr>
+    {% endfor %}
+</table>
 {% endblock %}

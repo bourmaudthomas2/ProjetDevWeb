@@ -87,7 +87,7 @@ class CryptoController extends AbstractController
         $crypto['nom']=$res->getNom();
         $crypto['symbole']=$res->getSymbole();
         $crypto['description']=$res->getDescription();
-
+        $commentaires = $res->getCommentaires();
         if(strpos($res->getPrix(),".")){
             $crypto['prix']=number_format($res->getPrix(), 3, ",", " ");
         }else{
@@ -160,7 +160,7 @@ class CryptoController extends AbstractController
 
 
         return $this->render('crypto/detail.html.twig', [
-            'crypto' => $crypto
+            'crypto' => $crypto, 'commentaires' => $commentaires
         ]);
     }
 
