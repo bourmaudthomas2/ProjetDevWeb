@@ -14,6 +14,11 @@
     <div class="example-wrapper" style="padding:35px 0px 5px 25px">
         <span style="font-size: 1.9em;"> <b>{{ crypto.prix }} €</b></span>
 </div>
+    {% if app.user %}
+    <div>
+        <a href="../../favori/ajouter/{{ app.user.id }}/{{ crypto.id }}" class="btn btn-default navbar-btn">Ajouter au favoris</a>
+    </div>
+    {% endif %}
     <div class="example-wrapper" style="padding:0px 0px 25px 25px">
         <span style="font-size: 1em;">{{ crypto.description }}</span>
     </div>

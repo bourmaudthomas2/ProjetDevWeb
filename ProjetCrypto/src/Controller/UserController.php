@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Crypto;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -40,6 +41,29 @@ class UserController extends AbstractController
         $users = $this->getDoctrine()->getRepository(User::class)->findAll();
         return $this->render('admin/index.html.twig',[
             'users'=> $users
+        ]);
+    }
+    /**
+     * @Route("/favori/ajouter/{idUser}/{id}", name="favori.ajouter")
+     */
+    public function addFav(EntityManagerInterface $entityManager, $idUser,$id)
+    {
+        $user = $this->getDoctrine()->getRepository(User::class)->find($idUser);
+        $crypto = $this->getDoctrine()->getRepository(Crypto::class)->find($id);
+        $user->addCrypto($crypto);
+        $entityManager->persist($user);
+        $entityManager->flush($user);
+        return $this->redirect("localhost:8000/cryptos");
+    }
+    /**
+     * @Route("/user/fav/{id}", name="favori.index")
+     */
+    public function fav(EntityManagerInterface $entityManager, $id)
+    {
+        $user = $this->getDoctrine()->getRepository(User::class)->find($id);
+        $cryptos = $user->getCryptos();
+        return $this->render('crypto/index.html.twig', [
+            'cryptos' => $cryptos
         ]);
     }
 }
