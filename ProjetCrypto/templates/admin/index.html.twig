@@ -8,6 +8,7 @@
                 <th scope="col">#</th>
                 <th scope="col">Nom</th>
                 <th scope="col">Roles</th>
+                <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
@@ -18,10 +19,24 @@
                     <td>{{ nb }}</td>
                     <td>{{ user.username }}</td>
                     <td>
+                        {% set nbR=0 %}
                     {% for role in user.roles %}
-                        {{ role }},
+                        {% set nbR = nbR +1 %}
+
+                            {{ role }}
+
+
                     {% endfor %}
                     </td>
+                    {% if "ROLE_ADMIN" not in user.roles %}
+                    <td>
+                        <a href="{{ path('admin.ajouter', {id: user.id}) }}" class="btn btn-link">Promouvoir Admin</a>
+                    </td>
+                        {% else %}
+                        <td>
+
+                        </td>
+                    {% endif %}
                 </tr>
             {% endfor %}
 

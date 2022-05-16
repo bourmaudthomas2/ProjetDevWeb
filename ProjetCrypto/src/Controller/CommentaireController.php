@@ -68,5 +68,29 @@ class CommentaireController extends AbstractController
         $em->flush();
         return $this->redirectToRoute('crypto.index');
     }
+    /**
+     *
+     * @Route("commentaire/{id}/modifier", name="commentaire.modifier")
+     * @param Request $request
+     * @param EntityManagerInterface $em
+     * @return Response
+     */
+    public function modifier(Request $request, EntityManagerInterface $em, $id)
+    {
+        $commentaire = $this->getDoctrine()->getRepository(Commentaire::class)->find($id);
 
+        $form = $this->createForm(CommentaireType::class, $commentaire);
+        $form->get('description')->setData($commentaire->getDescription());
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->persist($commentaire);
+            $em->flush();
+            return $this->redirectToRoute('crypto.index');
+
+        }
+        return $this->render('commentaire/modifier.html.twig', [
+            'com' =>$commentaire, 'form' => $form->createView()]);
+
+
+    }
 }
