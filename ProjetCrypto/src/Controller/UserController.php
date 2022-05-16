@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Commentaire;
 use App\Entity\Crypto;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -44,6 +45,22 @@ class UserController extends AbstractController
         ]);
     }
     /**
+     * @Route("/admin/supprimer/{id}", name="admin.supprimer")
+     */
+    public function suppAdmin(EntityManagerInterface $entityManager, $id)
+    {
+        $user = $this->getDoctrine()->getRepository(User::class)->find($id);
+        $ar = array();
+        $user->setRoles($ar);
+        $entityManager->persist($user);
+        $entityManager->flush($user);
+
+        $users = $this->getDoctrine()->getRepository(User::class)->findAll();
+        return $this->render('admin/index.html.twig',[
+            'users'=> $users
+        ]);
+    }
+    /**
      * @Route("/favori/ajouter/{idUser}/{id}", name="favori.ajouter")
      */
     public function addFav(EntityManagerInterface $entityManager, $idUser,$id)
@@ -64,6 +81,26 @@ class UserController extends AbstractController
         $cryptos = $user->getCryptos();
         return $this->render('crypto/index.html.twig', [
             'cryptos' => $cryptos
+        ]);
+    }
+    /**
+     * @Route("/user/com/{id}", name="user.commentaire")
+     */
+    public function commentairesUser(EntityManagerInterface $em,$id)
+    {
+        $user = $this->getDoctrine()->getRepository(User::class)->find($id);
+        $commentaires = $user->getCommentaires();
+        $nom = $user->getUsername();
+        $em = $this->getDoctrine()->getManager();
+        $repo = $em->getRepository(Commentaire::class);
+        $totalCom = $repo->createQueryBuilder('a')
+            ->where('a.user ='.$user->getId())
+            ->select('count(a.id)')
+            ->getQuery()
+            ->getSingleScalarResult();
+
+        return $this->render('commentaire/list.html.twig', [
+            'commentaires' => $commentaires, 'nom' => $nom, 'nb'=>$totalCom
         ]);
     }
 }

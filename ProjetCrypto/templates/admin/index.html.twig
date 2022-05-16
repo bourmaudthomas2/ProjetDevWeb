@@ -17,7 +17,7 @@
                 {% set nb = nb + 1 %}
                 <tr>
                     <td>{{ nb }}</td>
-                    <td>{{ user.username }}</td>
+                    <td><a href="{{ path('user.commentaire', {id: user.id })}}">{{ user.username }}</a></td>
                     <td>
                         {% set nbR=0 %}
                     {% for role in user.roles %}
@@ -25,16 +25,15 @@
 
                             {{ role }}
 
-
                     {% endfor %}
                     </td>
                     {% if "ROLE_ADMIN" not in user.roles %}
                     <td>
-                        <a href="{{ path('admin.ajouter', {id: user.id}) }}" class="btn btn-link">Promouvoir Admin</a>
+                        <a href="{{ path('admin.ajouter', {id: user.id}) }}" class="btn btn-link">Promouvoir au rang d'admin</a>
                     </td>
                         {% else %}
                         <td>
-
+                            <a href="{{ path('admin.supprimer', {id: user.id}) }}" class="btn btn-link">Rétrograder au rang d'utilisateur</a>
                         </td>
                     {% endif %}
                 </tr>
