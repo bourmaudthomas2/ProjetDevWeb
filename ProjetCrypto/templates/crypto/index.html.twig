@@ -37,8 +37,47 @@
 
 
     </div>
-    &nbsp
-    &nbsp
+
+
+    {% if sortBool==1 %}
+        <div style="text-align: center; padding-top: 10px; padding-bottom: 15px">
+            <span style="padding-right: 20px"><a href="../../../cryptos/sort/{{ sort }}&{{ order }}" style=" color: #000000;text-decoration: none;"><u>Début</u></a></span>
+            <span style="padding-right: 20px"><a href="../../../cryptos/sort/{{ sort }}&{{ order }}/{{ pageStart-1 }}" style=" color: #000000;text-decoration: none;"><u>Précedent</u></a></span>
+            {% for i in pageStart-2 .. pageEnd  %}
+
+                {% if i > 0 %}
+                    {% if i == pageStart %}
+                        <span style="padding-left: 5px"><a href="../../../cryptos/sort/{{ sort }}&{{ order }}/{{ i }}" style=" color: #000000;text-decoration: none;"> <b><u>{{ i }}</u></b></a></span>
+                    {% else %}
+                        <span style="padding-left: 5px"><a href="../../../cryptos/sort/{{ sort }}&{{ order }}/{{ i }}" style=" color: #000000;text-decoration: none;">{{ i }}</a></span>
+                    {% endif %}
+                {% endif %}
+
+            {% endfor %}
+            <span style="padding-left: 20px"><a href="../../../cryptos/sort/{{ sort }}&{{ order }}/{{ pageStart+1 }}" style=" color: #000000;text-decoration: none;"><u>Suivant</u></a></span>
+
+        </div>
+    {% else %}
+        <div style="text-align: center; padding-top: 10px; padding-bottom: 15px">
+            <span style="padding-right: 20px"><a href="../../cryptos/" style=" color: #000000;text-decoration: none;"><u>Début</u></a></span>
+            <span style="padding-right: 20px"><a href="../../cryptos/{{ pageStart-1 }}" style=" color: #000000;text-decoration: none;"><u>Précedent</u></a></span>
+            {% for i in pageStart-2 .. pageEnd  %}
+
+                {% if i > 0 %}
+                    {% if i == pageStart %}
+                        <span style="padding-left: 5px"><a href="../../cryptos/{{ i }}" style=" color: #000000;text-decoration: none;"> <b><u>{{ i }}</u></b></a></span>
+                    {% else %}
+                        <span style="padding-left: 5px"><a href="../../cryptos/{{ i }}" style=" color: #000000;text-decoration: none;">{{ i }}</a></span>
+                    {% endif %}
+                {% endif %}
+
+            {% endfor %}
+            <span style="padding-left: 20px"><a href="../../cryptos/{{ pageStart+1 }}" style=" color: #000000;text-decoration: none;"><u>Suivant</u></a></span>
+
+        </div>
+    {% endif %}
+
+
 </div>
 
     <script>

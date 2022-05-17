@@ -31,7 +31,7 @@
                 <tr>
                     <td>{{ nb }}</td>
                     <td><img src="{{ cryp.logo }}" width="30px"></td>
-                    <td ><a href="../../crypto/detail/{{cryp.id}}" style=" color: #000000;text-decoration: none;"><b>{{ cryp.nom }}</b></a></td>
+                    <td ><a href="../../../crypto/detail/{{cryp.id}}" style=" color: #000000;text-decoration: none;"><b>{{ cryp.nom }}</b></a></td>
                     <td>{{ cryp.symbole }}</td>
                     <td>{{ cryp.prix }} €</td>
                     <td>{{ cryp.marketcap }}</td>
@@ -46,8 +46,23 @@
 
 
     </div>
-    &nbsp
-    &nbsp
+    <div style="text-align: center; padding-top: 10px; padding-bottom: 15px">
+    <span style="padding-right: 20px"><a href="../../../cryptos/categorie/{{ cat }}/1" style=" color: #000000;text-decoration: none;"><u>Début</u></a></span>
+    <span style="padding-right: 20px"><a href="../../../cryptos/categorie/{{ cat }}/{{ pageStart-1 }}" style=" color: #000000;text-decoration: none;"><u>Précedent</u></a></span>
+    {% for i in pageStart-2 .. pageEnd  %}
+
+        {% if i > 0 %}
+            {% if i == pageStart %}
+                <span style="padding-left: 5px"><a href="../../../cryptos/categorie/{{ cat }}/{{ i }}" style=" color: #000000;text-decoration: none;"> <b><u>{{ i }}</u></b></a></span>
+            {% else %}
+                <span style="padding-left: 5px"><a href="../../../cryptos/categorie/{{ cat }}/{{ i }}" style=" color: #000000;text-decoration: none;">{{ i }}</a></span>
+            {% endif %}
+        {% endif %}
+
+    {% endfor %}
+    <span style="padding-left: 20px"><a href="../../../cryptos/categorie/{{ cat }}/{{ pageStart+1 }}" style=" color: #000000;text-decoration: none;"><u>Suivant</u></a></span>
+
+</div>
     </div>
 
     <script>
@@ -59,6 +74,7 @@
             pathnameFinal = "/cryptos/categorie/"+value;
 
             url = origin+pathnameFinal;
+            console.log(url);
             window.location.replace(url);
         }
     </script>

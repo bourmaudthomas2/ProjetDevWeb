@@ -10,40 +10,51 @@ use Symfony\Component\Routing\Annotation\Route;
 class CryptoController extends AbstractController
 {
     /**
-     * @Route("/cryptos", name="crypto.index")
+     * @Route("/cryptos/{page}", name="crypto.index")
      */
-    public function index(): Response
+    public function index($page=1): Response
     {
+        //var_dump($page);
+        if($page<=0){
+            $page=1;
+        }
+        $page2= ($page-1)*50;
+
         $repo = $this->getDoctrine()->getRepository(Crypto::class);
         $cryptos = $repo->findBy(
             array(),
             array(),
             50,
-            0
+            $page2
         );
 
         return $this->render('crypto/index.html.twig', [
-            'cryptos' => $cryptos
+            'cryptos' => $cryptos, "pageStart" => $page, "pageEnd" => $page+3, "sortBool"=>0
         ]);
     }
     /**
-     * @Route("/cryptos/sort/{sort}&{order}", name="crypto.sort")
+     * @Route("/cryptos/sort/{sort}&{order}/{page}", name="crypto.sort")
      */
-    public function cryptosSort($sort,$order): Response
+    public function cryptosSort($sort,$order, $page=1): Response
     {
         if($sort == "date"){
             $sort = "dateCreation";
         }
+        if($page<=0){
+            $page=1;
+        }
+        $page2= ($page-1)*50;
+
         $repo = $this->getDoctrine()->getRepository(Crypto::class);
         $cryptos = $repo->findBy(
             array(),
             array("$sort" => "$order"),
             50,
-            0
+            $page2
         );
 
         return $this->render('crypto/index.html.twig', [
-            'cryptos' => $cryptos
+            'cryptos' => $cryptos, "pageStart" => $page, "pageEnd" => $page+3, "sort"=>$sort, "order"=>$order, "sortBool"=>1
         ]);
     }
     /**
@@ -222,11 +233,17 @@ class CryptoController extends AbstractController
     }
 
     /**
-     * @Route("/cryptos/categorie/{cat}", name="crypto.categorie")
+     * @Route("/cryptos/categorie/{cat}/{page}", name="crypto.categorie")
      * @return Response
      */
-    public function cryptosCategorie($cat = "Cryptocurrency"): Response
+    public function cryptosCategorie($cat = "Cryptocurrency", $page = 1): Response
     {
+
+        if($page<=0){
+            $page=1;
+        }
+        $page2= ($page-1)*50;
+
         $cat = str_replace("_",".", $cat);
 
         $repo = $this->getDoctrine()->getRepository(Crypto::class);
@@ -255,14 +272,14 @@ class CryptoController extends AbstractController
             array("categorie"=>$cat),
             array(),
             50,
-            0
+            $page2
         );
 
 //var_dump($cryptos[1]);
 
 
         return $this->render('crypto/categorie.html.twig', [
-            'cryptos' => $cryptos, "cat"=>$cat, "categories"=>$categories
+            'cryptos' => $cryptos, "cat"=>$cat, "categories"=>$categories, "pageStart" => $page, "pageEnd" => $page+3
         ]);
     }
 }
