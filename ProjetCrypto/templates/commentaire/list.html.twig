@@ -1,15 +1,15 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Commentaires de {{ nom }}</h1>
+    <h1>{% trans %}Commentaires de{% endtrans %} {{ nom }}</h1>
 {% if nb==0 %}
 
-    <h4>Cet utilisateur n'a posté aucun commentaire.</h4>
+    <h4>{% trans %}Cet utilisateur n'a posté aucun commentaire.{% endtrans %}</h4>
     {% else %}
     <table class="table text-center">
         <tr>
-            <th class="active text-center">Date</th>
-            <th class="active text-center">Description</th>
+            <th class="active text-center">{% trans %}Date{% endtrans %}</th>
+            <th class="active text-center">{% trans %}Description{% endtrans %}</th>
 
 
             <th class="active text-center"></th>
@@ -24,8 +24,8 @@
                 {% if app.user %}
                     {% if is_granted("ROLE_ADMIN") or app.user.username is same as(commentaire.user.username) %}
 
-                        <td><a class = "btn btn-danger" href="{{ path('commentaire.supprimer', {id: commentaire.id}) }}">Supprimer</a></td>
-                        <td><a class = "btn btn-warning" href="{{ path('commentaire.modifier', {id: commentaire.id}) }}">Modifier</a></td>
+                        <td><a class = "btn btn-danger" href="{{ path('commentaire.supprimer', {id: commentaire.id}) }}">{% trans %}Supprimer{% endtrans %}</a></td>
+                        <td><a class = "btn btn-warning" href="{{ path('commentaire.modifier', {id: commentaire.id}) }}">{% trans %}Modifier{% endtrans %}</a></td>
 
                     {% endif %}
                 {% endif %}
@@ -36,5 +36,5 @@
 
     </table>
     {% endif %}
-    <a href="/admin" class="btn btn-default navbar-btn">Retour</a>
+    <a href="/admin" class="btn btn-default navbar-btn">{% trans %}Retour{% endtrans %}</a>
 {% endblock %}

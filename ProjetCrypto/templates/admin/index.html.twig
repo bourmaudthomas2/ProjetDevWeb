@@ -1,13 +1,13 @@
 {%  extends 'base.html.twig' %}
 {% block body %}
 <div class="example-wrapper">
-        <h1 style="padding-left:25px">Liste des utilisateurs</h1>
+        <h1 style="padding-left:25px">{% trans %}Liste des utilisateurs{% endtrans %}</h1>
         <table class="table">
             <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Nom</th>
-                <th scope="col">Roles</th>
+                <th scope="col">{% trans %}Nom{% endtrans %}</th>
+                <th scope="col">{% trans %}Roles{% endtrans %}</th>
                 <th scope="col"></th>
             </tr>
             </thead>
@@ -29,11 +29,11 @@
                     </td>
                     {% if "ROLE_ADMIN" not in user.roles %}
                     <td>
-                        <a href="{{ path('admin.ajouter', {id: user.id}) }}" class="btn btn-link">Promouvoir au rang d'admin</a>
+                        <a href="{{ path('admin.ajouter', {id: user.id}) }}" class="btn btn-link">{% trans %}Promouvoir au rang d'admin{% endtrans %}</a>
                     </td>
                         {% else %}
                         <td>
-                            <a href="{{ path('admin.supprimer', {id: user.id}) }}" class="btn btn-link">Rétrograder au rang d'utilisateur</a>
+                            <a href="{{ path('admin.supprimer', {id: user.id}) }}" class="btn btn-link">{% trans %}Rétrograder au rang d'utilisateur{% endtrans %}</a>
                         </td>
                     {% endif %}
                 </tr>

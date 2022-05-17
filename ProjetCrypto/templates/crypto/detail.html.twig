@@ -16,7 +16,7 @@
 </div>
     {% if app.user %}
     <div>
-        <a href="../../favori/ajouter/{{ app.user.id }}/{{ crypto.id }}" class="btn btn-default navbar-btn">Ajouter au favoris</a>
+        <a href="../../favori/ajouter/{{ app.user.id }}/{{ crypto.id }}" class="btn btn-default navbar-btn">{% trans %}Ajouter au favoris{% endtrans %}</a>
     </div>
     {% endif %}
     <div class="example-wrapper" style="padding:0px 0px 25px 25px">
@@ -25,27 +25,27 @@
     <div class="example-wrapper">
         <table class="table">
             <tr>
-                <td style="text-align: left">Capitalisation de marché :</td>
+                <td style="text-align: left">{% trans %}Capitalisation de marché :{% endtrans %}</td>
                 <td> </td>
                 <td style="text-align: right">{{ crypto.marketcap }}</td>
             </tr>
             <tr>
-                <td style="text-align: left">Catégorie de la crypto-monnaie :</td>
+                <td style="text-align: left">{% trans %}Catégorie de la crypto-monnaie :{% endtrans %}</td>
                 <td> </td>
                 <td style="text-align: right">{{ crypto.categorie }}</td>
             </tr>
             <tr>
-                <td style="text-align: left">Date de création :</td>
+                <td style="text-align: left">{% trans %}Date de création :{% endtrans %}</td>
                 <td> </td>
                 <td style="text-align: right">{{ crypto.date_creation|date("m/d/Y") }}</td>
             </tr>
             <tr>
-                <td style="text-align: left">Favoris :</td>
+                <td style="text-align: left">{% trans %}Favoris :{% endtrans %}</td>
                 <td> </td>
                 <td style="text-align: right">{{ crypto.vote_up }}</td>
             </tr>
             <tr>
-                <td style="text-align: left">Followers page twitter officiel :</td>
+                <td style="text-align: left">{% trans %}Followers page twitter officiel :{% endtrans %}</td>
                 <td></td>
                 <td style="text-align: right">{{ crypto.followers }}</td>
             </tr>
@@ -63,7 +63,7 @@
         // Specify the configuration items and data for the chart
         var option = {
             title : {
-              text:"Cours de la cryptomonnaie : {{ crypto.nom }} sur les 24 dernières heures"
+              text:"{% trans %}Cours de la cryptomonnaie : {% endtrans %}{{ crypto.nom }} {% trans %}sur les 24 dernières heures{% endtrans %}"
             },
             tooltip: {
                 trigger: 'axis'
@@ -85,7 +85,7 @@
                 max:{{  crypto.graph.max}},
             },
             legend: {
-                data: ['Cours de la crypto']
+                data: ['{% trans %}Cours de la crypto{% endtrans %}']
             },
             series: [
                 {
@@ -102,18 +102,18 @@
         myChart.setOption(option);
 
     </script>
-    <h4 style="text-align: center"> Commentaires </h4>
+    <h4 style="text-align: center"> {% trans %}Commentaires {% endtrans %}</h4>
     {% if app.user is null %}
-    <h6 style="text-align: center">Vous devez être connecté pour ajouter un commentaire</h6>
+    <h6 style="text-align: center">{% trans %}Vous devez être connecté pour ajouter un commentaire{% endtrans %}</h6>
     {% else %}
-        <a href="/add/comm/{{ crypto.id }}" class="btn btn-default navbar-btn">Ajouter un commentaire</a>
+        <a href="/add/comm/{{ crypto.id }}" class="btn btn-default navbar-btn">{% trans %}Ajouter un commentaire{% endtrans %}</a>
     {% endif %}
 
 
 <table class="table text-center">
     <tr>
-        <th class="active text-center">Nom</th>
-        <th class="active text-center">Commentaire</th>
+        <th class="active text-center">{% trans %}Nom{% endtrans %}</th>
+        <th class="active text-center">{% trans %}Commentaire{% endtrans %}</th>
 
 
                 <th class="active text-center"></th>
@@ -126,8 +126,8 @@
             {% if app.user %}
             {% if is_granted("ROLE_ADMIN") or app.user.username is same as(commentaire.user.username) %}
 
-                    <td><a class = "btn btn-danger" href="{{ path('commentaire.supprimer', {id: commentaire.id}) }}">Supprimer</a></td>
-                    <td><a class = "btn btn-warning" href="{{ path('commentaire.modifier', {id: commentaire.id}) }}">Modifier</a></td>
+                    <td><a class = "btn btn-danger" href="{{ path('commentaire.supprimer', {id: commentaire.id}) }}">{% trans %}Supprimer{% endtrans %}</a></td>
+                    <td><a class = "btn btn-warning" href="{{ path('commentaire.modifier', {id: commentaire.id}) }}">{% trans %}Modifier{% endtrans %}</a></td>
 
             {% endif %}
             {% endif %}

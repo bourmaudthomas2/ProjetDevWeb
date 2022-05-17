@@ -1,13 +1,13 @@
 {%  extends 'base.html.twig' %}
 {% block body %}
     <div class="example-wrapper">
-        <h2 style="padding-left:25px"> Cryptomonnaies - catégorie : {{ cat}} </h2>
+        <h2 style="padding-left:25px">{% trans %} Cryptomonnaies - catégorie :{% endtrans %} {{ cat}} </h2>
         <div style="padding: 15px">
-            <label for="pet-select">Catégorie :</label>
+            <label for="pet-select">{% trans %}Catégorie :{% endtrans %}</label>
 
             <select class="form-select form-select-lg mb-3" name="pets" id="pet-select" onchange="changeCategorie(value)">
                 {% for cat in categories %}
-                <option value="{{ cat.value }}" {{cat.selected}}>{{ cat.nom }}</option>
+                    <option value="{{ cat.value }}" {{cat.selected}}>{{ cat.nom }}</option>
                 {% endfor %}
             </select>
         </div>
@@ -16,12 +16,12 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col"></th>
-                <th scope="col">Nom</th>
-                <th scope="col">Symbole</th>
-                <th scope="col" >Prix</th>
-                <th scope="col">Marketcap</th>
-                <th scope="col">Categorie</th>
-                <th scope="col">Date de Création</th>
+                <th scope="col">{% trans %}Nom{% endtrans %}</th>
+                <th scope="col">{% trans %}Symbole{% endtrans %}</th>
+                <th scope="col" >{% trans %}Prix{% endtrans %}</th>
+                <th scope="col">{% trans %}Marketcap{% endtrans %}</th>
+                <th scope="col">{% trans %}Categorie{% endtrans %}</th>
+                <th scope="col">{% trans %}Date de Création{% endtrans %}</th>
             </tr>
             </thead>
             <tbody>
@@ -47,8 +47,8 @@
 
     </div>
     <div style="text-align: center; padding-top: 10px; padding-bottom: 15px">
-    <span style="padding-right: 20px"><a href="../../../cryptos/categorie/{{ cat }}/1" style=" color: #000000;text-decoration: none;"><u>Début</u></a></span>
-    <span style="padding-right: 20px"><a href="../../../cryptos/categorie/{{ cat }}/{{ pageStart-1 }}" style=" color: #000000;text-decoration: none;"><u>Précedent</u></a></span>
+    <span style="padding-right: 20px"><a href="../../../cryptos/categorie/{{ cat }}/1" style=" color: #000000;text-decoration: none;"><u>{% trans %}Début{% endtrans %}</u></a></span>
+    <span style="padding-right: 20px"><a href="../../../cryptos/categorie/{{ cat }}/{{ pageStart-1 }}" style=" color: #000000;text-decoration: none;"><u>{% trans %}Précedent{% endtrans %}</u></a></span>
     {% for i in pageStart-2 .. pageEnd  %}
 
         {% if i > 0 %}
@@ -60,7 +60,7 @@
         {% endif %}
 
     {% endfor %}
-    <span style="padding-left: 20px"><a href="../../../cryptos/categorie/{{ cat }}/{{ pageStart+1 }}" style=" color: #000000;text-decoration: none;"><u>Suivant</u></a></span>
+    <span style="padding-left: 20px"><a href="../../../cryptos/categorie/{{ cat }}/{{ pageStart+1 }}" style=" color: #000000;text-decoration: none;"><u>{% trans %}Suivant{% endtrans %}</u></a></span>
 
 </div>
     </div>

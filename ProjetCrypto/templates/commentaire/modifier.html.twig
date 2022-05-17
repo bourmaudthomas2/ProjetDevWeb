@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Modifier un commentaire :</h1>
+    <h1>{% trans %}Modifier un commentaire :{% endtrans %}</h1>
 
     {{ form_start(form) }}
 
@@ -9,9 +9,9 @@
     {{ form_widget(form) }}
 
     <div class="form-group">
-        <button type="submit" class="btn btn-default">Enregistrer</button>
+        <button type="submit" class="btn btn-default">{% trans %}Enregistrer{% endtrans %}</button>
         <a class="btn btn-secondary" href="{{ path('crypto.index') }}">
-            Liste des cryptomonnaies
+            {% trans %} Liste des cryptomonnaies{% endtrans %}
         </a>
     </div>
     {{ form_end(form) }}

@@ -47,11 +47,15 @@
         <div class="collapse navbar-collapse">
 
             <ul class="nav navbar-nav navbar-left">
-                <a class="navbar-brand" href="../../../cryptos">Liste</a>
-                <a class="navbar-brand" href="../../../cryptos/categorie/Cryptocurrency">Categorie</a>
+
+
+
+
+                <a class="navbar-brand" href="../../cryptos">{% trans %} Liste {% endtrans %}</a>
+                <a class="navbar-brand" href="../../cryptos/categorie/Cryptocurrency">{% trans %} Categories {% endtrans %}</a>
                 {%  if app.user %}
 
-                    <a class="navbar-brand" href="/user/fav/{{ app.user.id }}">Favoris</a>
+                    <a class="navbar-brand" href="/user/fav/{{ app.user.id }}">{% trans %} Favories {% endtrans %}</a>
 
                 {% endif %}
 
@@ -59,39 +63,53 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li style="padding-top:15px">
-                {%  if app.user %}
+                    {%  if app.user %}
 
-                    Bienvenue {{ app.user.username }}
+                        {% trans %} Bienvenue {% endtrans %} {{ app.user.username }}
 
-                {% endif %}
+                    {% endif %}
                 </li>
                 <li>
-                <div>
-                    <a onclick="myFunction()" class="btn btn-default navbar-btn" >Mode Sombre</a>
-                </div>
-                </li>
-                <li>
-                {% if app.user %}
-                {% if is_granted('ROLE_ADMIN') %}
                     <div>
-                        <a href="/admin" class="btn btn-default navbar-btn">Admin</a>
+                        <a onclick="myFunction()" class="btn btn-default navbar-btn" >{% trans %} Mode Sombre {% endtrans %}</a>
                     </div>
-                {% endif %}
-                {% endif %}
+                </li>
+                <li>
+                    {% if app.user %}
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <div>
+                                <a href="/admin" class="btn btn-default navbar-btn">Admin</a>
+                            </div>
+                        {% endif %}
+                    {% endif %}
                 <li/>
                 <li>
 
                     <div>
                         {%  if app.user %}
-                        <a href="/logout" class="btn btn-default navbar-btn">Déconnexion</a>
+                            <a href="/logout" class="btn btn-default navbar-btn">{% trans %} Déconnexion {% endtrans %}</a>
                         {% else %}
-                        <a href="/login" class="btn btn-default navbar-btn">Connexion</a>
+                            <a href="/login" class="btn btn-default navbar-btn">{% trans %} Connexion {% endtrans %}</a>
                         {% endif %}
-                   </div>
+                    </div>
                 </li>
+
+            </ul>
+            <ul class="nav navbar-nav">
+                {% for locale in locales %}
+                    {%  if locale != app.request.locale %}
+                        <li class="nav-item">
+                            <a class="navbar-brand" href="{{ path('change_locale',{'locale':locale}) }}"><img src="{{ asset(locale~'.png') }}" width="4%"></a>
+
+                        </li>
+                    {% endif %}
+                {% endfor %}
             </ul>
         </div>
+
+
     </div>
+
 </nav>
 
 <div class="container">
