@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Commentaires de {{ nom }}</h1>
+{% if nb==0 %}
+
+    <h4>Cet utilisateur n'a posté aucun commentaire.</h4>
+    {% else %}
+    <table class="table text-center">
+        <tr>
+            <th class="active text-center">Date</th>
+            <th class="active text-center">Description</th>
+
+
+            <th class="active text-center"></th>
+            <th class="active text-center"></th>
+        </tr>
+
+            {% for commentaire in commentaires %}
+
+            <tr>
+                <td>{{ commentaire.date|date("d/m/Y") }}</td>
+                <td>{{ commentaire.description}}</td>
+                {% if app.user %}
+                    {% if is_granted("ROLE_ADMIN") or app.user.username is same as(commentaire.user.username) %}
+
+                        <td><a class = "btn btn-danger" href="{{ path('commentaire.supprimer', {id: commentaire.id}) }}">Supprimer</a></td>
+                        <td><a class = "btn btn-warning" href="{{ path('commentaire.modifier', {id: commentaire.id}) }}">Modifier</a></td>
+
+                    {% endif %}
+                {% endif %}
+            </tr>
+
+            {% endfor %}
+
+
+    </table>
+    {% endif %}
+    <a href="/admin" class="btn btn-default navbar-btn">Retour</a>
+{% endblock %}
