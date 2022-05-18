@@ -35,7 +35,7 @@
       </trans-unit>
       <trans-unit id="wfvhVoQ" resname="Favories">
         <source>Favories</source>
-        <target>Favorites</target>
+        <target>Favories</target>
       </trans-unit>
       <trans-unit id="YSHyAf3" resname="Bienvenue">
         <source>Bienvenue</source>
@@ -212,6 +212,54 @@
       <trans-unit id="3y3zvHE" resname="Suivant">
         <source>Suivant</source>
         <target>Next</target>
+      </trans-unit>
+      <trans-unit id="oStzz1j" resname="Recherche">
+        <source>Recherche</source>
+        <target>Search</target>
+      </trans-unit>
+      <trans-unit id="qTiDCly" resname="Favoris">
+        <source>Favoris</source>
+        <target>__Favoris</target>
+      </trans-unit>
+      <trans-unit id="HfPuJIe" resname="Cryptomonnaies - recherche :">
+        <source>Cryptomonnaies - recherche :</source>
+        <target>Cryptocurrencies - search :</target>
+      </trans-unit>
+      <trans-unit id="TKdyWCw" resname="Nom de la cryptomonnaie">
+        <source>Nom de la cryptomonnaie</source>
+        <target>Name of the cryptocurrency</target>
+      </trans-unit>
+      <trans-unit id="aKU0H8a" resname="Catégorie">
+        <source>Catégorie</source>
+        <target>Category</target>
+      </trans-unit>
+      <trans-unit id="vFRw2ys" resname="Informations de marché">
+        <source>Informations de marché</source>
+        <target>Market informations</target>
+      </trans-unit>
+      <trans-unit id="oTj1HKJ" resname="Marketcap entre">
+        <source>Marketcap entre</source>
+        <target>Marketcap between</target>
+      </trans-unit>
+      <trans-unit id="8Fa4yuN" resname="et">
+        <source>et</source>
+        <target>and</target>
+      </trans-unit>
+      <trans-unit id="ApBx3EN" resname="Prix entre">
+        <source>Prix entre</source>
+        <target>Price between</target>
+      </trans-unit>
+      <trans-unit id="Ww8viBu" resname="Date de création entre">
+        <source>Date de création entre</source>
+        <target>Création date between</target>
+      </trans-unit>
+      <trans-unit id="6PEkUcB" resname="Cryptomonnaies - résultat :">
+        <source>Cryptomonnaies - résultat :</source>
+        <target>Cryptocurrency - result :</target>
+      </trans-unit>
+      <trans-unit id="1stv7ax" resname="Retour à la recherche">
+        <source>Retour à la recherche</source>
+        <target>Back to the research</target>
       </trans-unit>
     </body>
   </file>

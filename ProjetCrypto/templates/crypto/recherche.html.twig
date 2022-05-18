@@ -1,0 +1,56 @@
+
+{%  extends 'base.html.twig' %}
+{% block body %}
+    <div class="example-wrapper">
+        <h2 style="padding-left:25px; margin-bottom:25px">{% trans %} Cryptomonnaies - recherche :{% endtrans %} </h2>
+
+        {{ form_start(searchForm) }}
+        <span><b>{% trans %}Nom de la cryptomonnaie{% endtrans %}</b></span>
+        {{ form_row(searchForm.name, {
+            label: " "
+        }) }}
+        <span><b>{% trans %}Catégorie{% endtrans %}</b></span>
+        {{ form_row(searchForm.category, {
+            label: " "
+        }) }}
+        <span><b>{% trans %}Informations de marché{% endtrans %}</b></span>
+        <table>
+            <tr>
+                <td style="padding-right: 15px">{% trans %}Marketcap entre{% endtrans %} </td>
+                <td> {{ form_row(searchForm.marketcap1, {
+                        label: " "
+                    }) }}</td>
+                <td style="padding-right: 15px;padding-left: 15px"> {% trans %}et {% endtrans %}</td>
+                <td>{{ form_row(searchForm.marketcap2, {
+                        label: " "
+                    }) }}</td>
+            </tr>
+
+            <tr>
+                <td style="padding-right: 15px">{% trans %}Prix entre {% endtrans %}</td>
+                <td> {{ form_row(searchForm.price1, {
+                        label: " "
+                    }) }}</td>
+                <td style="padding-right: 15px;padding-left: 15px"> {% trans %}et {% endtrans %}</td>
+                <td>{{ form_row(searchForm.price2, {
+                        label: " "
+                    }) }}</td>
+            </tr>
+            <tr>
+                <td style="padding-right: 15px">{% trans %}Date de création entre{% endtrans %} </td>
+                <td> {{ form_row(searchForm.dateCreation1, {
+                        label: " "
+                    }) }}</td>
+                <td style="padding-right: 15px;padding-left: 15px"> {% trans %}et{% endtrans %} </td>
+                <td>{{ form_row(searchForm.dateCreation2, {
+                        label: " "
+                    }) }}</td>
+            </tr>
+
+        </table>
+
+        <button class="btn btn-lg btn-primary" type="submit" class="btn" style="margin-top: 25px">{% trans %}Recherche{% endtrans %}</button>
+        {{ form_end(searchForm) }}
+    </div>
+
+{% endblock %}

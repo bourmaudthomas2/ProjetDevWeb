@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Crypto;
+use App\Form\CryptoType;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -224,11 +226,17 @@ class CryptoController extends AbstractController
         }else{
             $crypto->setFollowers($json["community_data"]["twitter_followers"]);
         }
-        if($json["categories"][0] == null){
-            $crypto->setCategorie("");
-        }else{
-            $crypto->setCategorie($json["categories"][0]);
+
+        if(array_key_exists("categories", $json)){
+            if(sizeof($json["categories"])>0){
+                if($json["categories"][0] == null){
+                    $crypto->setCategorie("");
+                }else{
+                    $crypto->setCategorie($json["categories"][0]);
+                }
+            }
         }
+
         return $crypto;
     }
 
@@ -282,4 +290,78 @@ class CryptoController extends AbstractController
             'cryptos' => $cryptos, "cat"=>$cat, "categories"=>$categories, "pageStart" => $page, "pageEnd" => $page+3
         ]);
     }
+
+    /**
+     * @Route("/cryptos/recherche/{id}", name="crypto.recherche")
+     * @return Response
+     */
+    public function cryptosRecherche($id=1, Request $request): Response
+    {
+
+        $form = $this->createForm(CryptoType::class);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            // $form->getData() holds the submitted values
+            // but, the original `$task` variable has also been updated
+            $task = $form->getData();
+
+
+
+
+            $conn = $this->getDoctrine()->getConnection();
+
+
+            $name=$task["name"];
+            $price1=$task["price1"];
+            $price2=$task["price2"];
+            $marketcap1=$task["marketcap1"];
+            $marketcap2=$task["marketcap2"];
+            $category=$task["category"];
+            $dateCreation1=$task["dateCreation1"];
+            $dateCreation2=$task["dateCreation2"];
+
+            $sql = "select * from Crypto where 1=1 ";
+
+            if(!is_null($name)){
+                $sql.= "and nom like '%$name%'";
+            }
+            if(!is_null($category)){
+                $sql.= "and categorie like '%$category%'";
+            }
+            if(!is_null($price1)){
+                $sql.= " and prix between '$price1' and '$price2'";
+            }
+            if(!is_null($marketcap1)){
+                $sql.= "and marketcap between '$marketcap1' and '$marketcap2'";
+            }
+            if(!is_null($dateCreation1)){
+                $sql.= "and date_creation between '$dateCreation1' and '$dateCreation2'";
+            }
+            $sql.= ";";
+
+
+            if($sql=="select * from Crypto where 1=1 ;"){
+                $res=array();
+            }else{
+                $stmt = $conn->prepare($sql);
+
+                $stmt->execute();
+                $res=  $stmt->fetchAll();
+
+            }
+
+            // ... perform some action, such as saving the task to the database
+
+            return $this->render('crypto/resultat.html.twig', [
+               "cryptos"=> $res
+            ]);
+        }
+
+        return $this->render('crypto/recherche.html.twig', [
+            'searchForm' => $form->createView(),
+        ]);
+    }
+
+
 }
