@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="fr" target-language="en" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="NGdqgWZ" resname="Liste des utilisateurs">
+        <source>Liste des utilisateurs</source>
+        <target>User list</target>
+      </trans-unit>
+      <trans-unit id="ssEkU20" resname="Nom">
+        <source>Nom</source>
+        <target>Name</target>
+      </trans-unit>
+      <trans-unit id="wlM3BVR" resname="Roles">
+        <source>Roles</source>
+        <target>Roles</target>
+      </trans-unit>
+      <trans-unit id="QjwYN7v" resname="Promouvoir au rang d'admin">
+        <source>Promouvoir au rang d'admin</source>
+        <target>Promote to admin</target>
+      </trans-unit>
+      <trans-unit id="qGafTAW" resname="Rétrograder au rang d'utilisateur">
+        <source>Rétrograder au rang d'utilisateur</source>
+        <target>Demote to user</target>
+      </trans-unit>
+      <trans-unit id="c0OEHnJ" resname="Liste">
+        <source>Liste</source>
+        <target>List</target>
+      </trans-unit>
+      <trans-unit id="uLHYlMa" resname="Categories">
+        <source>Categories</source>
+        <target>Categories</target>
+      </trans-unit>
+      <trans-unit id="wfvhVoQ" resname="Favories">
+        <source>Favories</source>
+        <target>Favorites</target>
+      </trans-unit>
+      <trans-unit id="YSHyAf3" resname="Bienvenue">
+        <source>Bienvenue</source>
+        <target>Welcome</target>
+      </trans-unit>
+      <trans-unit id="ifYXIZV" resname="Mode Sombre">
+        <source>Mode Sombre</source>
+        <target>Dark Mode</target>
+      </trans-unit>
+      <trans-unit id="_1_eksG" resname="Déconnexion">
+        <source>Déconnexion</source>
+        <target>Logout</target>
+      </trans-unit>
+      <trans-unit id="YdaVBBA" resname="Connexion">
+        <source>Connexion</source>
+        <target>Login</target>
+      </trans-unit>
+      <trans-unit id="me.lhY2" resname="Ajouter un commentaire :">
+        <source>Ajouter un commentaire :</source>
+        <target>Add a comment :</target>
+      </trans-unit>
+      <trans-unit id="cdx0hz4" resname="Enregistrer">
+        <source>Enregistrer</source>
+        <target>Save</target>
+      </trans-unit>
+      <trans-unit id="1FngClA" resname="Liste des cryptomonnaies">
+        <source>Liste des cryptomonnaies</source>
+        <target>List of cryptocurrencies</target>
+      </trans-unit>
+      <trans-unit id="y1RcKt4" resname="Commentaires de">
+        <source>Commentaires de</source>
+        <target>Comments from</target>
+      </trans-unit>
+      <trans-unit id="TNCXUCD" resname="Cet utilisateur n'a posté aucun commentaire.">
+        <source>Cet utilisateur n'a posté aucun commentaire.</source>
+        <target>This user has not posted any comments.</target>
+      </trans-unit>
+      <trans-unit id="mcQKtAW" resname="Date">
+        <source>Date</source>
+        <target>Date</target>
+      </trans-unit>
+      <trans-unit id="Um4Ah8w" resname="Description">
+        <source>Description</source>
+        <target>Description</target>
+      </trans-unit>
+      <trans-unit id="Xl0CFs4" resname="Supprimer">
+        <source>Supprimer</source>
+        <target>Delete</target>
+      </trans-unit>
+      <trans-unit id="QuN2BLY" resname="Modifier">
+        <source>Modifier</source>
+        <target>Modify</target>
+      </trans-unit>
+      <trans-unit id="7yOllAJ" resname="Retour">
+        <source>Retour</source>
+        <target>Back</target>
+      </trans-unit>
+      <trans-unit id="r5VxP4W" resname="Modifier un commentaire :">
+        <source>Modifier un commentaire :</source>
+        <target>Edit a comment :</target>
+      </trans-unit>
+      <trans-unit id="z2Z6boh" resname="Cryptomonnaies - catégorie :">
+        <source>Cryptomonnaies - catégorie :</source>
+        <target>Cryptocurrencies - category :</target>
+      </trans-unit>
+      <trans-unit id="1MwUHPS" resname="Catégorie :">
+        <source>Catégorie :</source>
+        <target>Category :</target>
+      </trans-unit>
+      <trans-unit id="QeVL0lT" resname="Symbole">
+        <source>Symbole</source>
+        <target>Symbol</target>
+      </trans-unit>
+      <trans-unit id="VMMk9sE" resname="Prix">
+        <source>Prix</source>
+        <target>Price</target>
+      </trans-unit>
+      <trans-unit id="Zn5EP6j" resname="Marketcap">
+        <source>Marketcap</source>
+        <target>Marketcap</target>
+      </trans-unit>
+      <trans-unit id="OXfTUpb" resname="Categorie">
+        <source>Categorie</source>
+        <target>Category</target>
+      </trans-unit>
+      <trans-unit id="rlajjSz" resname="Date de Création">
+        <source>Date de Création</source>
+        <target>Creation date</target>
+      </trans-unit>
+      <trans-unit id="rTytbEt" resname="Ajouter au favoris">
+        <source>Ajouter au favoris</source>
+        <target>Add to favorites</target>
+      </trans-unit>
+      <trans-unit id="xcFVyUy" resname="Capitalisation de marché :">
+        <source>Capitalisation de marché :</source>
+        <target>Market capitalization:</target>
+      </trans-unit>
+      <trans-unit id="fZzrQaH" resname="Catégorie de la crypto-monnaie :">
+        <source>Catégorie de la crypto-monnaie :</source>
+        <target>Crypto-currency category:</target>
+      </trans-unit>
+      <trans-unit id="lPs0Qkp" resname="Date de création :">
+        <source>Date de création :</source>
+        <target>Creation date :</target>
+      </trans-unit>
+      <trans-unit id="GdbQ3H1" resname="Favoris :">
+        <source>Favoris :</source>
+        <target>Favorites :</target>
+      </trans-unit>
+      <trans-unit id="TSexnwv" resname="Followers page twitter officiel :">
+        <source>Followers page twitter officiel :</source>
+        <target>Followers official twitter page :</target>
+      </trans-unit>
+      <trans-unit id="U7sHVko" resname="Cours de la cryptomonnaie :">
+        <source>Cours de la cryptomonnaie :</source>
+        <target>Cryptocurrency rates:</target>
+      </trans-unit>
+      <trans-unit id="ugjNWPD" resname="sur les 24 dernières heures">
+        <source>sur les 24 dernières heures</source>
+        <target>in the last 24 hours</target>
+      </trans-unit>
+      <trans-unit id="RYnhYJA" resname="Cours de la crypto">
+        <source>Cours de la crypto</source>
+        <target>Cryptocurrency rates:</target>
+      </trans-unit>
+      <trans-unit id="9516ize" resname="Commentaires">
+        <source>Commentaires</source>
+        <target>Comments</target>
+      </trans-unit>
+      <trans-unit id="9yqbBS9" resname="Vous devez être connecté pour ajouter un commentaire">
+        <source>Vous devez être connecté pour ajouter un commentaire</source>
+        <target>You must be logged in to add a comment</target>
+      </trans-unit>
+      <trans-unit id="goxluGo" resname="Ajouter un commentaire">
+        <source>Ajouter un commentaire</source>
+        <target>Add a comment</target>
+      </trans-unit>
+      <trans-unit id="SNPoFla" resname="Commentaire">
+        <source>Commentaire</source>
+        <target>Comment</target>
+      </trans-unit>
+      <trans-unit id="c_9tIPF" resname="Cours des cryptomonnaies">
+        <source>Cours des cryptomonnaies</source>
+        <target>Cryptocurrencies prices</target>
+      </trans-unit>
+      <trans-unit id="sBFnVlo" resname="Vous êtes connecté en tant que">
+        <source>Vous êtes connecté en tant que</source>
+        <target>You are logged in as</target>
+      </trans-unit>
+      <trans-unit id="kljm8Fx" resname="Connectez-vous">
+        <source>Connectez-vous</source>
+        <target>Login</target>
+      </trans-unit>
+      <trans-unit id="hRdkX4h" resname="Nom d'utilisateur">
+        <source>Nom d'utilisateur</source>
+        <target>Username</target>
+      </trans-unit>
+      <trans-unit id=".5yLjAZ" resname="Mot de passe">
+        <source>Mot de passe</source>
+        <target>Password</target>
+      </trans-unit>
+      <trans-unit id="5vxlCKH" resname="Pas de compte ? Inscrivez vous ici">
+        <source>Pas de compte ? Inscrivez vous ici</source>
+        <target>No account ? Sign up here</target>
+      </trans-unit>
+      <trans-unit id="PEiqK99" resname="Début">
+        <source>Début</source>
+        <target>Beginning</target>
+      </trans-unit>
+      <trans-unit id="WDmyT3_" resname="Précedent">
+        <source>Précedent</source>
+        <target>Previous</target>
+      </trans-unit>
+      <trans-unit id="3y3zvHE" resname="Suivant">
+        <source>Suivant</source>
+        <target>Next</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
