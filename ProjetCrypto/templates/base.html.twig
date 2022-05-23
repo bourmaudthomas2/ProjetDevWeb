@@ -10,6 +10,8 @@
     {% block javascripts %}{% endblock %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
     <style>
         .dark-mode {
             background-color: #12162b;
@@ -62,13 +64,21 @@
 
 
             </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li style="padding-top:15px">
-                    {%  if app.user %}
 
-                        {% trans %} Bienvenue {% endtrans %} {{ app.user.username }}
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <div>
+                {% for locale in locales %}
+                    {%  if locale != app.request.locale %}
+                        {% if locale == 'en' %}
+                            <a class="btn btn-default navbar-btn"  href="{{ path('change_locale',{'locale':locale}) }}">English</a>
+                        {% elseif locale == 'fr' %}
+                            <a class="btn btn-default navbar-btn" href="{{ path('change_locale',{'locale':locale}) }}">Français</a>
+                        {% endif %}
 
                     {% endif %}
+                {% endfor %}
+                    </div>
                 </li>
                 <li>
                     <div>
@@ -96,16 +106,7 @@
                 </li>
 
             </ul>
-            <ul class="nav navbar-nav">
-                {% for locale in locales %}
-                    {%  if locale != app.request.locale %}
-                        <li class="nav-item">
-                            <a class="navbar-brand" href="{{ path('change_locale',{'locale':locale}) }}"><img src="{{ asset(locale~'.png') }}" width="4%"></a>
 
-                        </li>
-                    {% endif %}
-                {% endfor %}
-            </ul>
         </div>
 
 

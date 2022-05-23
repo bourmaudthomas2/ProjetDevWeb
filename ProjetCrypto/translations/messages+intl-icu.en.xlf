@@ -33,9 +33,9 @@
         <source>Categories</source>
         <target>Categories</target>
       </trans-unit>
-      <trans-unit id="wfvhVoQ" resname="Favories">
+      <trans-unit id="wfvhVoQ" resname="Favoris">
         <source>Favoris</source>
-        <target>Favories</target>
+        <target>Favorites</target>
       </trans-unit>
       <trans-unit id="YSHyAf3" resname="Bienvenue">
         <source>Bienvenue</source>
@@ -219,7 +219,7 @@
       </trans-unit>
       <trans-unit id="qTiDCly" resname="Favoris">
         <source>Favoris</source>
-        <target>__Favoris</target>
+        <target>Favorites</target>
       </trans-unit>
       <trans-unit id="HfPuJIe" resname="Cryptomonnaies - recherche :">
         <source>Cryptomonnaies - recherche :</source>

@@ -79,7 +79,7 @@ class UserController extends AbstractController
     {
         $user = $this->getDoctrine()->getRepository(User::class)->find($id);
         $cryptos = $user->getCryptos();
-        return $this->render('crypto/index.html.twig', [
+        return $this->render('crypto/fav.html.twig', [
             'cryptos' => $cryptos
         ]);
     }
