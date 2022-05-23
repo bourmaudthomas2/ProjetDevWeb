@@ -2,7 +2,6 @@
 <module type="WEB_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
-      <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/psr/cache" />
       <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/psr/container" />
       <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/psr/link" />
       <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/psr/log" />
@@ -33,7 +32,6 @@
       <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/symfony/debug" />
       <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/symfony/debug-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/symfony/dependency-injection" />
-      <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/symfony/deprecation-contracts" />
       <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/symfony/doctrine-bridge" />
       <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/symfony/dom-crawler" />
       <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/symfony/dotenv" />
@@ -62,10 +60,7 @@
       <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/symfony/polyfill-intl-icu" />
       <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/symfony/polyfill-intl-idn" />
       <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/symfony/polyfill-intl-normalizer" />
-      <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/symfony/polyfill-mbstring" />
       <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/symfony/polyfill-php72" />
-      <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/symfony/polyfill-php73" />
-      <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/symfony/polyfill-php80" />
       <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/symfony/polyfill-php81" />
       <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/symfony/process" />
       <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/symfony/property-access" />
@@ -78,7 +73,6 @@
       <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/symfony/security-guard" />
       <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/symfony/security-http" />
       <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/symfony/serializer" />
-      <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/symfony/service-contracts" />
       <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/symfony/stopwatch" />
       <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/symfony/translation" />
       <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/symfony/translation-contracts" />
@@ -92,17 +86,12 @@
       <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/symfony/yaml" />
       <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/theseer/tokenizer" />
       <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/doctrine/annotations" />
-      <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/doctrine/cache" />
-      <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/doctrine/collections" />
       <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/doctrine/common" />
       <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/doctrine/dbal" />
       <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/doctrine/deprecations" />
       <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/doctrine/doctrine-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/doctrine/doctrine-migrations-bundle" />
-      <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/doctrine/event-manager" />
-      <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/doctrine/inflector" />
       <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/doctrine/instantiator" />
-      <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/doctrine/lexer" />
       <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/doctrine/migrations" />
       <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/doctrine/orm" />
       <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/doctrine/persistence" />
@@ -133,6 +122,17 @@
       <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/composer" />
       <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/doctrine/doctrine-cache-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/doctrine/reflection" />
+      <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/symfony/deprecation-contracts" />
+      <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/symfony/service-contracts" />
+      <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/symfony/polyfill-php80" />
+      <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/symfony/polyfill-mbstring" />
+      <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/psr/cache" />
+      <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/doctrine/lexer" />
+      <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/doctrine/event-manager" />
+      <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/doctrine/collections" />
+      <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/doctrine/cache" />
+      <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/doctrine/inflector" />
+      <excludeFolder url="file://$MODULE_DIR$/ProjetCrypto/vendor/symfony/polyfill-php73" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
