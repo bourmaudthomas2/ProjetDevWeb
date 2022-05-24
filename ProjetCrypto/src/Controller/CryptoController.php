@@ -402,4 +402,119 @@ class CryptoController extends AbstractController
     }
 
 
+    /**
+     * @Route("/cryptos/recherche_avancer/null", name="crypto.recherche_avancee")
+     * @return Response
+     */
+    public function cryptosRechercheAvancee(): Response
+    {
+
+        $ch = curl_init();
+        try {
+            $url = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=20&page=1";
+
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_HEADER, false);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
+            curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+            curl_setopt($ch, CURLOPT_MAXREDIRS, 1);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+
+            $response = curl_exec($ch);
+
+            if (curl_errno($ch)) {
+                echo curl_error($ch);
+                die();
+            }
+
+            $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+            if ($http_code == intval(200)) {
+                //echo $response;
+            } else {
+                echo "Ressource introuvable : " . $http_code;
+            }
+        } catch (\Throwable $th) {
+            throw $th;
+        } finally {
+            curl_close($ch);
+        }
+
+        $json = json_decode($response, 1);
+        $cryptos = array();
+        $cryptosPrices=array();
+        foreach ($json as $j) {
+            $cryptos[] = $j["id"];
+            $cryptosPrices[$j["id"]]=$j["current_price"];
+        }
+        foreach ($cryptos as $c) {
+            $ch = curl_init();
+            try {
+                $url = "https://api.coingecko.com/api/v3/coins/$c/market_chart?vs_currency=eur&days=365&interval=daily";
+
+                curl_setopt($ch, CURLOPT_URL, $url);
+                curl_setopt($ch, CURLOPT_HEADER, false);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
+                curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+                curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+                curl_setopt($ch, CURLOPT_MAXREDIRS, 1);
+                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+
+                $response = curl_exec($ch);
+
+                if (curl_errno($ch)) {
+                    echo curl_error($ch);
+                    die();
+                }
+
+                $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+                if ($http_code == intval(200)) {
+                    //echo $response;
+                } else {
+                    echo "Ressource introuvable : " . $http_code;
+                }
+            } catch (\Throwable $th) {
+                throw $th;
+            } finally {
+                curl_close($ch);
+            }
+
+            $json = json_decode($response, 1);
+
+            $prices = $json["prices"];
+$min=999999999999999999;
+$max=-1;
+            foreach ($prices as $p){
+                if($min>$p[1]){
+                    $min = $p[1];
+                }
+                if($max<$p[1]){
+                    $max = $p[1];
+                }
+
+            }
+            $moy=($min+$max)/2;
+
+            if($cryptosPrices[$c]>$moy){
+                $valsCryptos[]=$c;
+                $vals[$c]=array("id"=>$c,"min"=>$min, "max"=>$max, "moy"=>round($moy,2)." €", "actual"=>$cryptosPrices[$c]);
+            }
+
+
+
+        }
+        $repo = $this->getDoctrine()->getRepository(Crypto::class);
+        $cryptos2 = $repo->findBy(
+            array("idAPI"=>$valsCryptos),
+            array(),
+        );
+       // var_dump($cryptos2);
+
+        return $this->render('crypto/recherche_avance.html.twig', [
+            "cryptos"=>$cryptos2, "vals"=>$vals
+        ]);
+    }
+
 }
