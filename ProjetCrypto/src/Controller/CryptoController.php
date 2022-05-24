@@ -106,7 +106,7 @@ class CryptoController extends AbstractController
         }else{
             $crypto['prix']=number_format($res->getPrix(), 0, "", " ");
         }
-
+        $crypto['favoris']= sizeof($res->getUsers());
         $crypto['marketcap']=$res->getMarketcap();
         $crypto['categorie']=$res->getCategorie();
         $crypto['followers']=$res->getFollowers();
