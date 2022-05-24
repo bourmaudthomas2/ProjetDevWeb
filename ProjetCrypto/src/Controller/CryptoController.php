@@ -355,6 +355,9 @@ class CryptoController extends AbstractController
             }
             if (!is_null($dateCreation1)) {
                 if (!is_null($dateCreation1)) {
+                    $dateCreation1 = $dateCreation1->format('Y-m-d H:i:s.u');
+                    $dateCreation2 = $dateCreation2->format('Y-m-d H:i:s.u');
+
                     $sql .= "and date_creation between '$dateCreation1' and '$dateCreation2' ";
                 } else {
                     $sql .= "and date_creation = '$dateCreation1' ";
