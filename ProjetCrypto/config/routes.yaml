@@ -5,3 +5,7 @@ index:
 admin:
     path: /admin
     controller: App\Controller\UserController::admin
+
+recherche_avancer:
+    path: /cryptos/recherche_avancer
+    controller: App\Controller\CryptoController::cryptosRechercheAvancee
