@@ -18,6 +18,7 @@
     <div>
         <a href="../../favori/ajouter/{{ app.user.id }}/{{ crypto.id }}" class="btn btn-default navbar-btn">{% trans %}Ajouter au favoris{% endtrans %}</a>
     </div>
+
     {% endif %}
     <div class="example-wrapper" style="padding:0px 0px 25px 25px">
         <span style="font-size: 1em;">{{ crypto.description }}</span>
@@ -48,11 +49,6 @@
                 <td style="text-align: left">{% trans %}Followers page twitter officiel :{% endtrans %}</td>
                 <td></td>
                 <td style="text-align: right">{{ crypto.followers }}</td>
-            </tr>
-            <tr>
-                <td style="text-align: left">{% trans %}Nombre de votes :{% endtrans %}</td>
-                <td></td>
-                <td style="text-align: right">{{ crypto.vote_up }}</td>
             </tr>
         </table>
     </div>
