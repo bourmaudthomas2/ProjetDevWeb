@@ -8,43 +8,35 @@
     {% block stylesheets %}{% endblock %}
 
     {% block javascripts %}{% endblock %}
-    <link rel="icon" type="image/gif" href="{{ asset('logo.png')}}" />
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+    <script>
+        function addDarkmodeWidget() {
+            new Darkmode().showWidget();
 
+        }
+
+        window.addEventListener('load', addDarkmodeWidget);
+    </script>
     <style>
-        .dark-mode {
-            background-color: #12162b;
-            color: white;
 
-        }
-        .dark-modebar {
-            background-color:#0a0c17;
-        }
         li {
             padding-left: 15px;
             padding-right: 15px;"
         }
 
     </style>
-    <script>
-        function myFunction() {
-            var element = document.body;
-            element.classList.toggle("dark-mode");
-            var elements = document.getElementsByClassName('navbar navbar-default'); // get all elements.
-            for(var i = 0; i < elements.length; i++){
-                elements[i].classList.toggle("dark-modebar");
-            }
-        }
-    </script>
+
     <script src="https://go-echarts.github.io/go-echarts-assets/assets/echarts.min.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a href="../../cryptos" class="navbar-left"><img src="{{ asset('logo.png')}}" width="100%" style="margin-top : 1px;margin-right: -820px "></a>
+            <a href="#" class="navbar-left"><img src="{{ asset('logo.png')}}" width="100%" style="margin-top : 1px;margin-right: -820px "></a>
 
             <a class="navbar-brand" href="../../cryptos">Bébou Crypto</a>
         </div>
@@ -84,11 +76,7 @@
                 {% endfor %}
                     </div>
                 </li>
-                <li>
-                    <div>
-                        <a onclick="myFunction()" class="btn btn-default navbar-btn" >{% trans %} Mode Sombre {% endtrans %}</a>
-                    </div>
-                </li>
+
                 <li>
                     {% if app.user %}
                         {% if is_granted('ROLE_ADMIN') %}
