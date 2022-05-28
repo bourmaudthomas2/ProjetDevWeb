@@ -33,9 +33,9 @@
         <source>Categories</source>
         <target>Categories</target>
       </trans-unit>
-      <trans-unit id="wfvhVoQ" resname="Favories">
-        <source>Favories</source>
-        <target>Favories</target>
+      <trans-unit id="qTiDCly" resname="Favoris">
+        <source>Favoris</source>
+        <target>Favorites</target>
       </trans-unit>
       <trans-unit id="YSHyAf3" resname="Bienvenue">
         <source>Bienvenue</source>
@@ -217,10 +217,6 @@
         <source>Recherche</source>
         <target>Search</target>
       </trans-unit>
-      <trans-unit id="qTiDCly" resname="Favoris">
-        <source>Favoris</source>
-        <target>__Favoris</target>
-      </trans-unit>
       <trans-unit id="HfPuJIe" resname="Cryptomonnaies - recherche :">
         <source>Cryptomonnaies - recherche :</source>
         <target>Cryptocurrencies - search :</target>
@@ -260,6 +256,30 @@
       <trans-unit id="1stv7ax" resname="Retour à la recherche">
         <source>Retour à la recherche</source>
         <target>Back to the research</target>
+      </trans-unit>
+      <trans-unit id="uVK2JFp" resname="Recherche Avancée">
+        <source>Recherche Avancée</source>
+        <target>Advanced Search</target>
+      </trans-unit>
+      <trans-unit id="_i4EOe7" resname="Nombre de favoris entre">
+        <source>Nombre de favoris entre</source>
+        <target>Number of favorites between</target>
+      </trans-unit>
+      <trans-unit id="Q4kuuQH" resname="Nombre de followers entre">
+        <source>Nombre de followers entre</source>
+        <target>Number of followers between</target>
+      </trans-unit>
+      <trans-unit id="NBvrUlE" resname="Cryptomonnaies - Recherche avancée :">
+        <source>Cryptomonnaies - Recherche avancée :</source>
+        <target>Cryptocurrencies - Advanced search :</target>
+      </trans-unit>
+      <trans-unit id="j97mAik" resname="Moyenne annuelle">
+        <source>Moyenne annuelle</source>
+        <target>Annual average</target>
+      </trans-unit>
+      <trans-unit id="z7GsDIB" resname="Inscription">
+        <source>Inscription</source>
+        <target>Registration</target>
       </trans-unit>
     </body>
   </file>

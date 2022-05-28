@@ -8,6 +8,7 @@
     {% else %}
     <table class="table text-center">
         <tr>
+            <th class="active text-center">Crypto</th>
             <th class="active text-center">{% trans %}Date{% endtrans %}</th>
             <th class="active text-center">{% trans %}Description{% endtrans %}</th>
 
@@ -19,6 +20,7 @@
             {% for commentaire in commentaires %}
 
             <tr>
+                <td>{{ commentaire.crypto.nom }}</td>
                 <td>{{ commentaire.date|date("d/m/Y") }}</td>
                 <td>{{ commentaire.description}}</td>
                 {% if app.user %}

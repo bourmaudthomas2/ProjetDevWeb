@@ -2,7 +2,6 @@
 <project version="4">
   <component name="PhpIncludePathManager">
     <include_path>
-      <path value="$PROJECT_DIR$/ProjetCrypto/vendor/psr/cache" />
       <path value="$PROJECT_DIR$/ProjetCrypto/vendor/psr/container" />
       <path value="$PROJECT_DIR$/ProjetCrypto/vendor/psr/link" />
       <path value="$PROJECT_DIR$/ProjetCrypto/vendor/psr/log" />
@@ -33,7 +32,6 @@
       <path value="$PROJECT_DIR$/ProjetCrypto/vendor/symfony/debug" />
       <path value="$PROJECT_DIR$/ProjetCrypto/vendor/symfony/debug-bundle" />
       <path value="$PROJECT_DIR$/ProjetCrypto/vendor/symfony/dependency-injection" />
-      <path value="$PROJECT_DIR$/ProjetCrypto/vendor/symfony/deprecation-contracts" />
       <path value="$PROJECT_DIR$/ProjetCrypto/vendor/symfony/doctrine-bridge" />
       <path value="$PROJECT_DIR$/ProjetCrypto/vendor/symfony/dom-crawler" />
       <path value="$PROJECT_DIR$/ProjetCrypto/vendor/symfony/dotenv" />
@@ -62,10 +60,7 @@
       <path value="$PROJECT_DIR$/ProjetCrypto/vendor/symfony/polyfill-intl-icu" />
       <path value="$PROJECT_DIR$/ProjetCrypto/vendor/symfony/polyfill-intl-idn" />
       <path value="$PROJECT_DIR$/ProjetCrypto/vendor/symfony/polyfill-intl-normalizer" />
-      <path value="$PROJECT_DIR$/ProjetCrypto/vendor/symfony/polyfill-mbstring" />
       <path value="$PROJECT_DIR$/ProjetCrypto/vendor/symfony/polyfill-php72" />
-      <path value="$PROJECT_DIR$/ProjetCrypto/vendor/symfony/polyfill-php73" />
-      <path value="$PROJECT_DIR$/ProjetCrypto/vendor/symfony/polyfill-php80" />
       <path value="$PROJECT_DIR$/ProjetCrypto/vendor/symfony/polyfill-php81" />
       <path value="$PROJECT_DIR$/ProjetCrypto/vendor/symfony/process" />
       <path value="$PROJECT_DIR$/ProjetCrypto/vendor/symfony/property-access" />
@@ -78,7 +73,6 @@
       <path value="$PROJECT_DIR$/ProjetCrypto/vendor/symfony/security-guard" />
       <path value="$PROJECT_DIR$/ProjetCrypto/vendor/symfony/security-http" />
       <path value="$PROJECT_DIR$/ProjetCrypto/vendor/symfony/serializer" />
-      <path value="$PROJECT_DIR$/ProjetCrypto/vendor/symfony/service-contracts" />
       <path value="$PROJECT_DIR$/ProjetCrypto/vendor/symfony/stopwatch" />
       <path value="$PROJECT_DIR$/ProjetCrypto/vendor/symfony/translation" />
       <path value="$PROJECT_DIR$/ProjetCrypto/vendor/symfony/translation-contracts" />
@@ -92,17 +86,12 @@
       <path value="$PROJECT_DIR$/ProjetCrypto/vendor/symfony/yaml" />
       <path value="$PROJECT_DIR$/ProjetCrypto/vendor/theseer/tokenizer" />
       <path value="$PROJECT_DIR$/ProjetCrypto/vendor/doctrine/annotations" />
-      <path value="$PROJECT_DIR$/ProjetCrypto/vendor/doctrine/cache" />
-      <path value="$PROJECT_DIR$/ProjetCrypto/vendor/doctrine/collections" />
       <path value="$PROJECT_DIR$/ProjetCrypto/vendor/doctrine/common" />
       <path value="$PROJECT_DIR$/ProjetCrypto/vendor/doctrine/dbal" />
       <path value="$PROJECT_DIR$/ProjetCrypto/vendor/doctrine/deprecations" />
       <path value="$PROJECT_DIR$/ProjetCrypto/vendor/doctrine/doctrine-bundle" />
       <path value="$PROJECT_DIR$/ProjetCrypto/vendor/doctrine/doctrine-migrations-bundle" />
-      <path value="$PROJECT_DIR$/ProjetCrypto/vendor/doctrine/event-manager" />
-      <path value="$PROJECT_DIR$/ProjetCrypto/vendor/doctrine/inflector" />
       <path value="$PROJECT_DIR$/ProjetCrypto/vendor/doctrine/instantiator" />
-      <path value="$PROJECT_DIR$/ProjetCrypto/vendor/doctrine/lexer" />
       <path value="$PROJECT_DIR$/ProjetCrypto/vendor/doctrine/migrations" />
       <path value="$PROJECT_DIR$/ProjetCrypto/vendor/doctrine/orm" />
       <path value="$PROJECT_DIR$/ProjetCrypto/vendor/doctrine/persistence" />
@@ -133,6 +122,17 @@
       <path value="$PROJECT_DIR$/ProjetCrypto/vendor/composer" />
       <path value="$PROJECT_DIR$/ProjetCrypto/vendor/doctrine/doctrine-cache-bundle" />
       <path value="$PROJECT_DIR$/ProjetCrypto/vendor/doctrine/reflection" />
+      <path value="$PROJECT_DIR$/ProjetCrypto/vendor/symfony/deprecation-contracts" />
+      <path value="$PROJECT_DIR$/ProjetCrypto/vendor/symfony/service-contracts" />
+      <path value="$PROJECT_DIR$/ProjetCrypto/vendor/symfony/polyfill-php80" />
+      <path value="$PROJECT_DIR$/ProjetCrypto/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/ProjetCrypto/vendor/psr/cache" />
+      <path value="$PROJECT_DIR$/ProjetCrypto/vendor/doctrine/lexer" />
+      <path value="$PROJECT_DIR$/ProjetCrypto/vendor/doctrine/event-manager" />
+      <path value="$PROJECT_DIR$/ProjetCrypto/vendor/doctrine/collections" />
+      <path value="$PROJECT_DIR$/ProjetCrypto/vendor/doctrine/cache" />
+      <path value="$PROJECT_DIR$/ProjetCrypto/vendor/doctrine/inflector" />
+      <path value="$PROJECT_DIR$/ProjetCrypto/vendor/symfony/polyfill-php73" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.0">

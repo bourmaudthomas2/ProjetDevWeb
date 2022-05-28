@@ -27,6 +27,26 @@
             </tr>
 
             <tr>
+                <td style="padding-right: 15px">{% trans %}Nombre de favoris entre {% endtrans %}</td>
+                <td> {{ form_row(searchForm.favoris1, {
+                        label: " "
+                    }) }}</td>
+                <td style="padding-right: 15px;padding-left: 15px"> {% trans %}et {% endtrans %}</td>
+                <td>{{ form_row(searchForm.favoris2, {
+                        label: " "
+                    }) }}</td>
+            </tr>
+            <tr>
+                <td style="padding-right: 15px">{% trans %}Nombre de followers entre {% endtrans %}</td>
+                <td> {{ form_row(searchForm.followers1, {
+                        label: " "
+                    }) }}</td>
+                <td style="padding-right: 15px;padding-left: 15px"> {% trans %}et {% endtrans %}</td>
+                <td>{{ form_row(searchForm.followers2, {
+                        label: " "
+                    }) }}</td>
+            </tr>
+            <tr>
                 <td style="padding-right: 15px">{% trans %}Prix entre {% endtrans %}</td>
                 <td> {{ form_row(searchForm.price1, {
                         label: " "
@@ -46,7 +66,6 @@
                         label: " "
                     }) }}</td>
             </tr>
-
         </table>
 
         <button class="btn btn-lg btn-primary" type="submit" class="btn" style="margin-top: 25px">{% trans %}Recherche{% endtrans %}</button>

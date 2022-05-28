@@ -26,6 +26,10 @@ class CryptoType extends AbstractType
             ->add('dateCreation2',DateType::class,
                 array('attr' => array('style' => 'width: 125px'),'required'   => false,'widget' => 'single_text')
             )
+            ->add('favoris1',NumberType::class, array('attr' => array('style' => 'width: 125px'),'required'   => false,))
+            ->add('favoris2',NumberType::class, array('attr' => array('style' => 'width: 125px'),'required'   => false,))
+            ->add('followers1',NumberType::class, array('attr' => array('style' => 'width: 125px'),'required'   => false,))
+            ->add('followers2',NumberType::class, array('attr' => array('style' => 'width: 125px'),'required'   => false,))
 
         ;
     }

@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{% trans %}Inscription{% trans %}{% endblock %}
+{% block title %}{% trans %}Inscription{% endtrans %}{% endblock %}
 
 {% block body %}
-    <h1 class="h3 mb-3 font-weight-normal">{% trans %}Inscription{% trans %}</h1>
+    <h1 class="h3 mb-3 font-weight-normal">{% trans %}Inscription{% endtrans %}</h1>
     <div style="margin-top: 3%">
     {{ form_start(registrationForm) }}
         {{ form_row(registrationForm.username, {
@@ -18,7 +18,7 @@
             label: 'Confirmer la création'
         }) }}
 
-        <button class="btn btn-lg btn-primary" type="submit" class="btn">{% trans %}Inscription{% trans %}</button>
+        <button class="btn btn-lg btn-primary" type="submit" class="btn">{% trans %}Inscription{% endtrans %}</button>
     {{ form_end(registrationForm) }}
     </div>
 {% endblock %}

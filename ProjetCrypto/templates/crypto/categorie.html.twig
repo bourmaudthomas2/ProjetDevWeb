@@ -1,11 +1,12 @@
 {%  extends 'base.html.twig' %}
 {% block body %}
+
     <div class="example-wrapper">
         <h2 style="padding-left:25px">{% trans %} Cryptomonnaies - catégorie :{% endtrans %} {{ cat}} </h2>
         <div style="padding: 15px">
             <label for="pet-select">{% trans %}Catégorie :{% endtrans %}</label>
 
-            <select class="form-select form-select-lg mb-3" name="pets" id="pet-select" onchange="changeCategorie(value)">
+            <select class="form-control" name="pets" id="pet-select" onchange="changeCategorie(value)">
                 {% for cat in categories %}
                     <option value="{{ cat.value }}" {{cat.selected}}>{{ cat.nom }}</option>
                 {% endfor %}
