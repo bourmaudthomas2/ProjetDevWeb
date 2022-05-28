@@ -145,24 +145,39 @@ class CryptoController extends AbstractController
         $min = $prices[0][1];
         $max = 0;
 
-        $i = 0;
-        //traitement des données pour les agencer et trouver les min max et la légende pour le visuel du graphe
-        foreach ($prices as $p) {
-            if ($i == 24) break;
-            $date = date("m/d H:i", substr($p[0], 0, 10));
-            $crypto["graph"]["x"][] = $date;
-            $crypto["graph"]["data"][] = $p[1];
+        $date=new \DateTime();
 
-            if ($min > $p[1]) {
-                $min = $p[1];
-            }
-            if ($max < $p[1]) {
-                $max = $p[1];
+        $interval = date_diff($crypto["date_creation"], $date);
+
+        if($interval->format("%r%y")>0){
+            $i = 0;
+            //traitement des données pour les agencer et trouver les min max et la légende pour le visuel du graphe
+            foreach ($prices as $p) {
+                if ($i == 24) break;
+                $date = date("m/d H:i", substr($p[0], 0, 10));
+                $crypto["graph"]["x"][] = $date;
+                $crypto["graph"]["data"][] = $p[1];
+
+                if ($min > $p[1]) {
+                    $min = $p[1];
+                }
+                if ($max < $p[1]) {
+                    $max = $p[1];
+                }
             }
 
+            $crypto["graph"]["max"] = round($max + ($max * 0.1), 2);
+            $crypto["graph"]["min"] = round($min - ($min * 0.1), 2);
+
+        }else{
+            for($i=0;$i<25;$i++){
+                $crypto["graph"]["x"][$i] = 0;
+                $crypto["graph"]["data"][$i] = 0;
+            }
+            $crypto["graph"]["max"] = 0;
+            $crypto["graph"]["min"]=0;
         }
-        $crypto["graph"]["max"] = round($max + ($max * 0.1), 2);
-        $crypto["graph"]["min"] = round($min - ($min * 0.1), 2);
+
 
 
 //renvoie de la liste contenant les données pour la crypto
