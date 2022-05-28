@@ -12,13 +12,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+   <!-- Mode Sombre -->
     <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
     <script>
         function addDarkmodeWidget() {
-            new Darkmode().showWidget();
-
+            new Darkmode().showWidget()
         }
-
         window.addEventListener('load', addDarkmodeWidget);
     </script>
     <style>
@@ -44,10 +44,6 @@
         <div class="collapse navbar-collapse">
 
             <ul class="nav navbar-nav navbar-left">
-
-
-
-
                 <a class="navbar-brand" href="../../cryptos">{% trans %} Liste {% endtrans %}</a>
                 <a class="navbar-brand" href="../../cryptos/categorie/Cryptocurrency">{% trans %} Categories {% endtrans %}</a>
                 <a class="navbar-brand" href="../../cryptos/recherche/null">{% trans %} Recherche {% endtrans %}</a>
@@ -64,6 +60,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li>
                     <div>
+                        <!-- Changement de la langue actuelle pour traduction -->
                 {% for locale in locales %}
                     {%  if locale != app.request.locale %}
                         {% if locale == 'en' %}
@@ -71,7 +68,6 @@
                         {% elseif locale == 'fr' %}
                             <a class="btn btn-default navbar-btn" href="{{ path('change_locale',{'locale':locale}) }}">Français</a>
                         {% endif %}
-
                     {% endif %}
                 {% endfor %}
                     </div>
@@ -79,6 +75,7 @@
 
                 <li>
                     {% if app.user %}
+                        {# Affichage du tableau de bord admin uniquement aux utilisateurs administrateurs #}
                         {% if is_granted('ROLE_ADMIN') %}
                             <div>
                                 <a href="/admin" class="btn btn-default navbar-btn">Admin</a>
@@ -107,7 +104,8 @@
 </nav>
 
 <div class="container">
-    {% block body %}{% endblock %}
+    {% block body %}
+    <a>Ajout admin</a>{% endblock %}
 </div>
 </body>
 </html>

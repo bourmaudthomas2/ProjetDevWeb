@@ -14,6 +14,7 @@ class MainController extends AbstractController
      */
     public function changeLocale($locale, Request $request)
     {
+        //Permet de modifier la variable locale, qui permet de connaitre la langue actuelle
         $request->getSession()->set('_locale',$locale);
         return $this->redirect($request->headers->get('referer'));
     }
