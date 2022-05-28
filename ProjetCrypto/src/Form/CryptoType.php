@@ -13,6 +13,8 @@ class CryptoType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        //attributs du formulaire
+        //attribut1 et attribut2 pour avoir un min max dans la requête.
         $builder
             ->add('name',TextType::class, array('attr' => array('style' => 'width: 200px'),'required'   => false,))
             ->add('price1',NumberType::class, array('attr' => array('style' => 'width: 125px'),'required'   => false,))

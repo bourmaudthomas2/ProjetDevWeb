@@ -16,7 +16,8 @@ class CryptoController extends AbstractController
      */
     public function index($page = 1): Response
     {
-        //var_dump($page);
+        //route pour avoir la liste des cryptos, limités a 50 cryptos par pages
+
         if ($page <= 0) {
             $page = 1;
         }
@@ -29,7 +30,7 @@ class CryptoController extends AbstractController
             50,
             $page2
         );
-
+//renvoie de la liste contenant les cryptos vers la vue
         return $this->render('crypto/index.html.twig', [
             'cryptos' => $cryptos, "pageStart" => $page, "pageEnd" => $page + 3, "sortBool" => 0
         ]);
@@ -40,9 +41,11 @@ class CryptoController extends AbstractController
      */
     public function cryptosSort($sort, $order, $page = 1): Response
     {
+        //on récupere les parametres de tri pour les utiliser dans la requete ensuite
         if ($sort == "date") {
             $sort = "dateCreation";
         }
+        //gestion de la page
         if ($page <= 0) {
             $page = 1;
         }
@@ -56,20 +59,9 @@ class CryptoController extends AbstractController
             $page2
         );
 
+//renvoie de la liste contenant les cryptos vers la vue
         return $this->render('crypto/index.html.twig', [
             'cryptos' => $cryptos, "pageStart" => $page, "pageEnd" => $page + 3, "sort" => $sort, "order" => $order, "sortBool" => 1
-        ]);
-    }
-
-    /**
-     * @Route("/crypto/load", name="crypto.load")
-     */
-    public function cryptoLoad(): Response
-    {
-
-
-        return $this->render('crypto/index.html.twig', [
-            'controller_name' => 'CryptoController',
         ]);
     }
 
@@ -80,17 +72,18 @@ class CryptoController extends AbstractController
      */
     public function cryptoOneById($id): Response
     {
+        //récupération de l'id de la crypto
         $manager = $this->getDoctrine()->getManager();
         $res = $this->getDoctrine()->getRepository(Crypto::class)->find($id);
         $idAPI = $res->getIdAPI();
-
+//mise a jour de la crypto
         $update = $this->updateCryptoOneById($idAPI, $res);
 
 
         $manager->persist($update);
         $manager->flush();
 
-
+//on la recupere, apres la mise a jour
         $res = $this->getDoctrine()->getRepository(Crypto::class)->find($id);
 
 
@@ -113,6 +106,7 @@ class CryptoController extends AbstractController
         $crypto['date_creation'] = $res->getDateCreation();
         $crypto['logo'] = $res->getLogo();
 
+        //récuperation des données pour le graphe dans le détail d'une crypto.
         $ch = curl_init();
         try {
             $url = "https://api.coingecko.com/api/v3/coins/" . $crypto['idAPI'] . "/market_chart?vs_currency=eur&days=1&interval=hourly";
@@ -146,12 +140,13 @@ class CryptoController extends AbstractController
         }
 
         $json = json_decode($response, 1);
-        //var_dump($json);
+
         $prices = $json["prices"];
         $min = $prices[0][1];
         $max = 0;
 
         $i = 0;
+        //traitement des données pour les agencer et trouver les min max et la légende pour le visuel du graphe
         foreach ($prices as $p) {
             if ($i == 24) break;
             $date = date("m/d H:i", substr($p[0], 0, 10));
@@ -170,6 +165,7 @@ class CryptoController extends AbstractController
         $crypto["graph"]["min"] = round($min - ($min * 0.1), 2);
 
 
+//renvoie de la liste contenant les données pour la crypto
         return $this->render('crypto/detail.html.twig', [
             'crypto' => $crypto, 'commentaires' => $commentaires
         ]);
@@ -177,7 +173,7 @@ class CryptoController extends AbstractController
 
     public function updateCryptoOneById($nameAPI, $crypto)
     {
-
+//récuperation des données actuelle de la crypto dans le but de mettre à jour celle-ci
         $ch = curl_init();
         try {
             curl_setopt($ch, CURLOPT_URL, "https://api.coingecko.com/api/v3/coins/$nameAPI");
@@ -209,7 +205,7 @@ class CryptoController extends AbstractController
         }
 
         $json = json_decode($response, 1);
-
+//mise à jour des données
         if ($json["market_data"]["current_price"]["eur"] == null) {
             $crypto->setPrix(0);
         } else {
@@ -262,7 +258,7 @@ class CryptoController extends AbstractController
         $stmt->execute();
         $categories = $stmt->fetchAll();
 
-
+//récupération des catégories pour la liste déroulante
         foreach ($categories as $category => $cate) {
             //var_dump($cate["categorie"]);
             $categories[$category]["value"] = str_replace(".", "_", $cate["categorie"]);
@@ -274,7 +270,7 @@ class CryptoController extends AbstractController
             }
 
         }
-
+//récupération des cryptos, triés par catégorie
         $cryptos = $repo->findBy(
             array("categorie" => $cat),
             array(),
@@ -282,9 +278,7 @@ class CryptoController extends AbstractController
             $page2
         );
 
-//var_dump($cryptos[1]);
-
-
+//renvoie de la liste contenant les cryptos vers la vue
         return $this->render('crypto/categorie.html.twig', [
             'cryptos' => $cryptos, "cat" => $cat, "categories" => $categories, "pageStart" => $page, "pageEnd" => $page + 3
         ]);
@@ -296,7 +290,7 @@ class CryptoController extends AbstractController
      */
     public function cryptosRecherche($id = 1, Request $request): Response
     {
-
+//création du formulaire pour la recherche avancée
         $form = $this->createForm(CryptoType::class);
 
         $form->handleRequest($request);
@@ -323,6 +317,7 @@ class CryptoController extends AbstractController
             $favoris1 = $task["favoris1"];
             $favoris2 = $task["favoris2"];
 
+            //création de la requete qui va venir chercher les cryptos selon les clés de recherches envoyée.
             if (!is_null($favoris1)) {
                 $sql = "select c.*, count(u.user_id) as nbFav from Crypto c left outer join user_crypto u on u.crypto_id = c.id where 1=1 ";
             } else {
@@ -393,7 +388,7 @@ class CryptoController extends AbstractController
                 $res = $stmt->fetchAll();
 
             }
-
+//retour vers la vue de résultat
             return $this->render('crypto/resultat.html.twig', [
                 "cryptos" => $res
             ]);

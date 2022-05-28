@@ -14,8 +14,10 @@ class CryptoFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
+
         ini_set('memory_limit', '-1');
         echo "fixtures cryptos\n";
+        //récupération de données comme le nombre de crypto global
         $ch = curl_init();
         try {
             curl_setopt($ch, CURLOPT_URL, "https://api.coingecko.com/api/v3/global");
@@ -52,7 +54,7 @@ class CryptoFixtures extends Fixture
         $global = $global["data"]["active_cryptocurrencies"];
         //echo "total = $global\n";
         $nbPage = floor($global / 250) + 2;
-
+        //par paquet de 250 cryptos, on viens récuperer les cryptos et les ajouter dans une array
         for ($i = 1; $i < $nbPage; $i++) {
             //echo "page $i\n";
             $ch = curl_init();
@@ -89,7 +91,7 @@ class CryptoFixtures extends Fixture
 
 
             foreach ($json as $j) {
-
+//insertion dans l'array
                 $cryptos[$j["id"]]["nom"] = $j["name"];
                 $cryptos[$j["id"]]["idAPI"] = $j["id"];
                 $cryptos[$j["id"]]["symbole"] = $j["symbol"];
@@ -119,7 +121,7 @@ class CryptoFixtures extends Fixture
         }
 
         echo "fixtures categorie\n";
-
+//récupération de la liste avec toutes les catégories des cryptos
         $ch = curl_init();
         try {
             curl_setopt($ch, CURLOPT_URL, "https://api.coingecko.com/api/v3/coins/categories/list");
@@ -154,6 +156,7 @@ class CryptoFixtures extends Fixture
 
         $index = 1;
         $i = 1;
+        //pour chque cryptos, on vient récuperer une liste qui contient les cryptos que cette catégorie. cela permet d'avoir la catégorie de la crypto
         foreach ($listCategorie as $categorie) {
             $stop = false;
             $i = 1;
@@ -218,6 +221,7 @@ class CryptoFixtures extends Fixture
                 }
             }
         }
+        //création des objets cryptos et insertionn dans la base de données.
         echo "Traitement\n";
         foreach ($cryptos as $cry) {
 
