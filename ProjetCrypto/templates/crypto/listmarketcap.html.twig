@@ -1,0 +1,40 @@
+{%  extends 'base.html.twig' %}
+{% block body %}
+    <div class="example-wrapper">
+        <h1 style="padding-left:25px"> {% trans %}Marketcap{% endtrans %}</h1>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col"></th>
+                <th scope="col" onclick="sortTable(0)">{% trans %}Nom{% endtrans %}</th>
+                <th scope="col">{% trans %}Symbole{% endtrans %}</th>
+                <th scope="col" onclick="sortTable(1)">{% trans %}Prix{% endtrans %}</th>
+                <th scope="col" onclick="sortTable(2)">{% trans %}Marketcap{% endtrans %}</th>
+                <th scope="col">{% trans %}Categorie{% endtrans %}</th>
+                <th scope="col" onclick="sortTable(3)">{% trans %}Date de Création{% endtrans %}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% set nb = 0 %}
+            {% for cryp in cryptos %}
+                {% set nb = nb + 1 %}
+                <tr>
+                    <td>{{ nb }}</td>
+                    <td><img src="{{ cryp.logo }}" width="30px"></td>
+                    <td ><a href="../../crypto/detail/{{cryp.id}}" style=" color: #000000;text-decoration: none;"><b>{{ cryp.nom }}</b></a></td>
+                    <td>{{ cryp.symbole }}</td>
+                    <td>{{ cryp.prix }} €</td>
+                    <td>{{ cryp.marketcap }}</td>
+                    <td>{{ cryp.categorie }}</td>
+                    <td>{{ cryp.dateCreation|date("d/m/Y") }}</td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+
+
+
+    </div>
+{% endblock %}
