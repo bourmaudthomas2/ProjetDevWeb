@@ -145,11 +145,11 @@ class CryptoController extends AbstractController
         $min = $prices[0][1];
         $max = 0;
 
-        $date=new \DateTime();
+        $date = new \DateTime();
 
         $interval = date_diff($crypto["date_creation"], $date);
 
-        if($interval->format("%r%y")>0){
+        if ($interval->format("%r%y") > 0) {
             $i = 0;
             //traitement des données pour les agencer et trouver les min max et la légende pour le visuel du graphe
             foreach ($prices as $p) {
@@ -169,15 +169,14 @@ class CryptoController extends AbstractController
             $crypto["graph"]["max"] = round($max + ($max * 0.1), 2);
             $crypto["graph"]["min"] = round($min - ($min * 0.1), 2);
 
-        }else{
-            for($i=0;$i<25;$i++){
+        } else {
+            for ($i = 0; $i < 25; $i++) {
                 $crypto["graph"]["x"][$i] = 0;
                 $crypto["graph"]["data"][$i] = 0;
             }
             $crypto["graph"]["max"] = 0;
-            $crypto["graph"]["min"]=0;
+            $crypto["graph"]["min"] = 0;
         }
-
 
 
 //renvoie de la liste contenant les données pour la crypto
@@ -456,10 +455,10 @@ class CryptoController extends AbstractController
 
         $json = json_decode($response, 1);
         $cryptos = array();
-        $cryptosPrices=array();
+        $cryptosPrices = array();
         foreach ($json as $j) {
             $cryptos[] = $j["id"];
-            $cryptosPrices[$j["id"]]=$j["current_price"];
+            $cryptosPrices[$j["id"]] = $j["current_price"];
         }
         foreach ($cryptos as $c) {
             $ch = curl_init();
@@ -497,37 +496,70 @@ class CryptoController extends AbstractController
             $json = json_decode($response, 1);
 
             $prices = $json["prices"];
-$min=999999999999999999;
-$max=-1;
-            foreach ($prices as $p){
-                if($min>$p[1]){
+            $min = 999999999999999999;
+            $max = -1;
+            foreach ($prices as $p) {
+                if ($min > $p[1]) {
                     $min = $p[1];
                 }
-                if($max<$p[1]){
+                if ($max < $p[1]) {
                     $max = $p[1];
                 }
 
             }
-            $moy=($min+$max)/2;
+            $moy = ($min + $max) / 2;
 
-            if($cryptosPrices[$c]>$moy){
-                $valsCryptos[]=$c;
-                $vals[$c]=array("id"=>$c,"min"=>$min, "max"=>$max, "moy"=>round($moy,2)." €", "actual"=>$cryptosPrices[$c]);
+            if ($cryptosPrices[$c] > $moy) {
+                $valsCryptos[] = $c;
+                $vals[$c] = array("id" => $c, "min" => $min, "max" => $max, "moy" => round($moy, 2) . " €", "actual" => $cryptosPrices[$c]);
             }
-
 
 
         }
         $repo = $this->getDoctrine()->getRepository(Crypto::class);
         $cryptos2 = $repo->findBy(
-            array("idAPI"=>$valsCryptos),
-            array(),
+            array("idAPI" => $valsCryptos),
+            array()
         );
-       // var_dump($cryptos2);
+        // var_dump($cryptos2);
 
         return $this->render('crypto/recherche_avance.html.twig', [
-            "cryptos"=>$cryptos2, "vals"=>$vals
+            "cryptos" => $cryptos2, "vals" => $vals
         ]);
     }
 
+    /**
+     * @Route("/cryptos/cryptoMarketcap/null", name="crypto.cryptoMarketcap")
+     * @return Response
+     */
+    public function cryptosByMarketcap(): Response
+    {
+
+
+
+        $repo = $this->getDoctrine()->getRepository(Crypto::class);
+
+        $marketcap2 = $repo->cryptoByMarketcap();
+
+
+        return $this->render('crypto/marketcap.html.twig', [
+            "marketcap" => $marketcap2
+        ]);
+    }
+    /**
+     * @Route("/cryptos/marketcap/{id}", name="crypto.cryptoMarketcapDetail")
+     * @return Response
+     */
+    public function cryptosByMarketcapDetail($id): Response
+    {
+
+
+        $repo = $this->getDoctrine()->getRepository(Crypto::class);
+
+        $cryptos = $repo->cryptoByMarketcapDetail($id);
+
+        return $this->render('crypto/listmarketcap.html.twig', [
+            "cryptos"=>$cryptos
+        ]);
+    }
 }

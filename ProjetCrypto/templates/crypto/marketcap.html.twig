@@ -12,7 +12,7 @@
             <tbody>
             {% for market in marketcap %}
                 <tr>
-                    <td ><a href="../../crypto/detail/{{cryp.id}}" style=" color: #000000;text-decoration: none;"><b>{{ market.classe }}</b></a></td>
+                    <td ><a href="../../cryptos/marketcap/{{market.id}}" style=" color: #000000;text-decoration: none;"><b>{{ market.classe }}</b></a></td>
                     <td>{{ market.nb }}</td>
                 </tr>
             {% endfor %}
