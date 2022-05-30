@@ -1,0 +1,26 @@
+{%  extends 'base.html.twig' %}
+{% block body %}
+    <div class="example-wrapper">
+        <h1 style="padding-left:25px"> {% trans %}Cryptomonnaies{% endtrans %}</h1>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col" >{% trans %}Marketcap{% endtrans %}</th>
+                <th scope="col" >{% trans %}Nombre de cryptos{% endtrans %}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for market in marketcap %}
+                <tr>
+                    <td ><a href="../../crypto/detail/{{cryp.id}}" style=" color: #000000;text-decoration: none;"><b>{{ market.classe }}</b></a></td>
+                    <td>{{ market.nb }}</td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+
+
+
+    </div>
+{% endblock %}
